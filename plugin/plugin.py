@@ -7,7 +7,7 @@
 # Edit By RAED Fix keyboard Add Version number 27-05-2019
 # Edit By RAED to openvision image 07-07-2019
 
-from enigma import eConsoleAppContainer, eDVBDB, eServiceCenter, eServiceReference, iServiceInformation
+from enigma import eConsoleAppContainer, eDVBDB, iServiceInformation
 from Components.Label import Label
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
@@ -21,8 +21,8 @@ from datetime import datetime
 from Components.config import config,  ConfigText, ConfigSubsection
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 ###########
-config.plugins.Biscotto = ConfigSubsection()
-config.plugins.Biscotto.lastcaid = ConfigText(default='0', fixed_size=False)
+config.plugins.KeyAdder = ConfigSubsection()
+config.plugins.KeyAdder.lastcaid = ConfigText(default='0', fixed_size=False)
 
 def getnewcaid(SoftCamKey):
    ##T 0001
@@ -48,15 +48,15 @@ def getnewcaid(SoftCamKey):
               newcaid=1
       formatter="{:04}"
       newcaid=formatter.format(newcaid)
-      saved_caid=int(config.plugins.Biscotto.lastcaid.value)+1
+      saved_caid=int(config.plugins.KeyAdder.lastcaid.value)+1
       if saved_caid>newcaid:
           newcaid=saved_caid
       elif newcaid>saved_caid :                                                    
-         config.plugins.Biscotto.lastcaid.value=newcaid
-         config.plugins.Biscotto.lastcaid.save()
+         config.plugins.KeyAdder.lastcaid.value=newcaid
+         config.plugins.KeyAdder.lastcaid.save()
       elif  newcaid==9999:
-          config.plugins.Biscotto.lastcaid.value="1111"
-          config.plugins.Biscotto.lastcaid.save()
+          config.plugins.KeyAdder.lastcaid.value="1111"
+          config.plugins.KeyAdder.lastcaid.save()
           newcaid=="1111"
       return newcaid 
 
@@ -222,7 +222,7 @@ def setKeyCallback(session, SoftCamKey, key):
 			restartmess = "\n*** Need to Restart emu TO Active new key ***\n"
 			open(SoftCamKey, "a").write(datastr)
 			eConsoleAppContainer().execute("/etc/init.d/softcam restart")
-			session.open(MessageBox, _("IRDETO key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
+			session.open(MessageBox, _("Irdeto key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
 	elif key:
 		   session.openWithCallback(boundFunction(setKeyCallback, session,SoftCamKey), HexKeyBoard,
 			title=_("Invalid key, length is %d" % len(key)), text=key.ljust(16,'*'))
@@ -315,7 +315,7 @@ def findKeyIRDETO(session, SoftCamKey, key="00000000000000000000000000000000"):
 		return key
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "Biscotto" , description = "Manually add Key to current service", icon="plugin.png",
+	return [PluginDescriptor(name = "Key Adder" , description = "Add BISS, PowerVU, Irdeto and Tandberg keys to current service", icon="plugin.png",
 		where = [PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU],
 		fnc = keymenu, needsRestart = False)]
 
