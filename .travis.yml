@@ -21,7 +21,7 @@ git:
   depth: 1
 
 script:
-- echo compiling Biscotto plugin
+- echo compiling Key Adder plugin
 - python -m compileall .
 - find . -type f -name "*.po" -exec msgfmt {} -o {}.mo \;
 - echo done!
