@@ -1,10 +1,12 @@
 from distutils.core import setup
+import setup_translate
 
-pkg = 'Extensions.Biscotto'
-setup (name = 'enigma2-plugin-extensions-Biscotto',
-       version = '2.0-r2',
-       description = 'Add BISS, PowerVU, IRDETO and Tandberg key to current service',
+pkg = 'Extensions.KeyAdder'
+setup (name = 'enigma2-plugin-extensions-keyadder',
+       version = '2.1',
+       description = 'Add BISS, PowerVU, Irdeto and Tandberg keys to current service.',
        packages = [pkg],
        package_dir = {pkg: 'plugin'},
-       package_data = {pkg: ['plugin.png']},
+       package_data = {pkg: ['plugin.png', '*/*.png', 'locale/*/LC_MESSAGES/*.mo']},
+       cmdclass = setup_translate.cmdclass, # for translation
       )
