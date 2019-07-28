@@ -7,6 +7,7 @@
 # Edit By RAED Fix keyboard Add Version number 27-05-2019
 # Edit By RAED to openvision image 07-07-2019
 # Edit By RAED & mfaraj57 change plugin name to AddKey 12-07-2019
+# Edit By RAED Add more site to download softcam files 28-07-2019
 
 from enigma import eConsoleAppContainer, eDVBDB, iServiceInformation, eTimer, loadPNG, getDesktop, RT_WRAP, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, gFont
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
@@ -28,11 +29,15 @@ import binascii
 import os
 from VirtualKeyBoard import VirtualKeyBoard
 
-Ver = "2.3"
+Ver = "2.4"
 reswidth = getDesktop(0).size().width()
 resheight = getDesktop(0).size().height()
 config.plugins.KeyAdder = ConfigSubsection()
 config.plugins.KeyAdder.lastcaid = ConfigText(default='0', fixed_size=False)
+
+def debug(label,data):
+    data=str(data)
+    open("/tmp/addkey.log","w").write("\n"+label+":>"+data)
 
 def getnewcaid(SoftCamKey):
    ##T 0001
@@ -76,8 +81,8 @@ def findSoftCamKey():
 		data = open("/tmp/.oscam/oscam.version", "r").readlines()
 	if os.path.exists("/tmp/.ncam/ncam.version"):
 		data = open("/tmp/.ncam/ncam.version", "r").readlines()
-	if os.path.exists("/tmp/.ncam/gcam.version"):
-		data = open("/tmp/.ncam/gcam.version", "r").readlines()
+	if os.path.exists("/tmp/.gcam/gcam.version"):
+		data = open("/tmp/.gcam/gcam.version", "r").readlines()
 		for line in data:
 			if "configdir:" in line.lower():
 				paths.insert(0, line.split(":")[1].strip())
@@ -122,17 +127,38 @@ class AddKeyUpdate(Screen):
         if index==0:
                 keymenu(self.session)
         elif index==1:
-                self.Downloadkeys()
+                self.siteselect()
         else:
-            self.close()   
+            self.close()
+
+    def siteselect(self):
+        list1 = []
+        list1.append(("softcam.org", "softcam.org"))
+        list1.append(("Serjoga softcam", "Serjoga softcam"))
+        from Screens.ChoiceBox import ChoiceBox
+        self.session.openWithCallback(self.Downloadkeys, ChoiceBox, _('select site to downloan file'), list1)
            
     def Downloadkeys(self, SoftCamKey=None):
+	self.list = []
         cmdlist = []
         SoftCamKey =findSoftCamKey()
-        myurl = 'http://www.softcam.org/deneme6.php?file=SoftCam.Key'
-        command = 'wget -O %s %s' % (SoftCamKey, myurl)
-        self.session.open(Console, title="Updating softcam file.....", cmdlist=[command])
-        self.close()
+	from downloader import imagedownloadScreen
+        agent='--header="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17"'
+        crt="--debug --no-check-certificate"
+        command=''
+        if select: 
+            if select[1] == "softcam.org":
+                myurl = 'http://www.softcam.org/deneme6.php?file=SoftCam.Key'
+                command = 'wget -O %s %s' % (SoftCamKey, myurl)
+                self.session.open(imagedownloadScreen,'softcam',SoftCamKey, myurl)
+            elif select[1] == "Serjoga softcam":
+                myurl = 'https://raw.githubusercontent.com/audi06/SoftCam.Key_Serjoga/master/SoftCam.Key'
+                command = 'wget -q %s %s %s %s' % (crt, agent, SoftCamKey, myurl)
+                self.session.open(imagedownloadScreen,'softcam',SoftCamKey,myurl)
+            else:
+                self.close()
+            debug("command",command)
+            self.close()
       
     def showmenulist(self, datalist):
         cacolor = 16776960
