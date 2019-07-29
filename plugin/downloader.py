@@ -18,7 +18,6 @@ sz_w = getDesktop(0).size().width()
 if sz_w == 1280 :
         SKIN_imagedownloadScreen = """
 <screen name="imagedownloadScreen" position="center,center" size="560,155" title="Downloading image...">
-<!--widget name="activityslider" position="20,40" size="510,15" pixmap="skin_default/progress_big.png" /-->
 <widget name="activityslider" position="20,50" size="510,20" borderWidth="1" transparent="1" />
 <widget name="package" position="20,5" size="510,45" font="Regular;18" halign="center" valign="center" transparent="1" />
 <widget name="status" position="20,80" size="510,45" font="Regular;16" halign="center" valign="center" transparent="1" />
@@ -26,10 +25,9 @@ if sz_w == 1280 :
 else:
         SKIN_imagedownloadScreen = """
 <screen name="imagedownloadScreen" position="center,center" size="805,232" title="Downloading image...">
-<!--widget name="activityslider" position="30,60" size="765,22" pixmap="skin_default/progress_big.png" /-->
 <widget name="activityslider" position="30,75" size="755,30" borderWidth="1" transparent="1" />
-<widget name="package" position="30,7" size="755,45" font="Regular;27" halign="center" valign="center" transparent="1" />
-<widget name="status" position="30,120" size="755,45" font="Regular;24" halign="center" valign="center" transparent="1" />
+<widget name="package" position="30,7" size="755,60" font="Regular;27" halign="center" valign="center" transparent="1" />
+<widget name="status" position="30,120" size="755,60" font="Regular;24" halign="center" valign="center" transparent="1" />
 </screen>"""
 
 #### progress screen
@@ -182,3 +180,34 @@ class imagedownloadScreen(Screen):
             self.session.openWithCallback(self.abort,MessageBox, _('Are you sure to stop download.'), MessageBox.TYPE_YESNO)
         else:
             self.close(False)
+
+    def remove_target(self):
+            import os
+            try:
+                if os.path.exists(self.target):
+                    os.remove(self.target)
+            except:
+                pass
+
+    def abort(self,answer=True):
+        if answer==False:
+            return
+        if not self.downloading:
+            if os_path.exists('/tmp/download_install.log'):
+               os.remove('/tmp/download_install.log')
+            self.close(False)
+        elif self.downloader is not None:
+            self.downloader.stop
+            info = _('Aborting...')
+            self['status'].setText(info)
+            cmd = 'echo canceled > /tmp/.download_error.log ; rm target'
+            cmd = cmd.replace('target', self.target)
+            self.remove_target()
+            try:
+                self.close(False)
+               
+            except:
+                pass
+        else: 
+            self.close(False)
+        return

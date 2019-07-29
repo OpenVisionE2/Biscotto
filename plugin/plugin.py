@@ -29,7 +29,7 @@ import binascii
 import os
 from VirtualKeyBoard import VirtualKeyBoard
 
-Ver = "2.4"
+Ver = "2.5"
 reswidth = getDesktop(0).size().width()
 resheight = getDesktop(0).size().height()
 config.plugins.KeyAdder = ConfigSubsection()
@@ -111,10 +111,10 @@ class AddKeyUpdate(Screen):
         self['actions'] = ActionMap(['ColorActions', 'WizardActions'], {'back': self.close,
          'ok': self.select,
          'back': self.close}, -1)
-        title=_("KeyAdder Version %s") % Ver
+        title = "KeyAdder Version %s" % Ver
         menuData = []
-        menuData.append((0, "Add key Manually ", 'key'))
-        menuData.append((1, "Update Softcam online", 'update'))
+        menuData.append((0, 'Add key Manually', 'key'))
+        menuData.append((1, 'Update Softcam online', 'update'))
         menuData.append((2, 'Exit', 'exit'))
         self.settitle(title, menuData)
 
@@ -135,14 +135,15 @@ class AddKeyUpdate(Screen):
         list1 = []
         list1.append(("softcam.org", "softcam.org"))
         list1.append(("Serjoga softcam", "Serjoga softcam"))
+        list1.append(("enigma1969 softcam", "enigma1969 softcam"))
         from Screens.ChoiceBox import ChoiceBox
         self.session.openWithCallback(self.Downloadkeys, ChoiceBox, _('select site to downloan file'), list1)
            
-    def Downloadkeys(self, SoftCamKey=None):
-	self.list = []
+    def Downloadkeys(self, select, SoftCamKey=None):
+        self.list = []
         cmdlist = []
-        SoftCamKey =findSoftCamKey()
-	from downloader import imagedownloadScreen
+        SoftCamKey = findSoftCamKey()
+        from downloader import imagedownloadScreen
         agent='--header="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17"'
         crt="--debug --no-check-certificate"
         command=''
@@ -154,6 +155,10 @@ class AddKeyUpdate(Screen):
             elif select[1] == "Serjoga softcam":
                 myurl = 'https://raw.githubusercontent.com/audi06/SoftCam.Key_Serjoga/master/SoftCam.Key'
                 command = 'wget -q %s %s %s %s' % (crt, agent, SoftCamKey, myurl)
+                self.session.open(imagedownloadScreen,'softcam',SoftCamKey,myurl)
+            elif select[1] == "enigma1969 softcam":
+                myurl = 'https://drive.google.com/uc?authuser=0&id=1aujij43w7qAyPHhfBLAN9sE-BZp8_AwI&export=download'
+                command = 'wget -O %s %s' % (SoftCamKey, myurl)
                 self.session.open(imagedownloadScreen,'softcam',SoftCamKey,myurl)
             else:
                 self.close()
