@@ -24,7 +24,7 @@ from array import array
 from string import hexdigits
 from datetime import datetime
 from Components.MenuList import MenuList
-from Tools.Directories import fileExists
+from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 import binascii
 import os
 from VirtualKeyBoard import VirtualKeyBoard
@@ -187,9 +187,9 @@ class AddKeyUpdate(Screen):
         for i in range(0, len(datalist)):
             txt = datalist[i][1]
             if reswidth == 1280:
-                  png = os.path.join('/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/%s.png' % datalist[i][2])
+                  png = os.path.join(resolveFilename(SCOPE_PLUGINS, 'Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/%s.png' % datalist[i][2]))
             else:
-                  png = os.path.join('/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsFHD/%s.png' % datalist[i][2])
+                  png = os.path.join(resolveFilename(SCOPE_PLUGINS, 'Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsFHD/%s.png' % datalist[i][2]))
             res.append(MultiContentEntryText(pos=(0, 1), size=(0, 0), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text='', color=scolor, color_sel=cccolor, border_width=3, border_color=806544))
             if reswidth == 1280:
                 res.append(MultiContentEntryText(pos=(60, 1), size=(723, 50), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text=str(txt), color=16777215, color_sel=16777215))
