@@ -13,7 +13,7 @@ from Screens.Screen import Screen
 from Tools.LoadPixmap import LoadPixmap
 from Components.Pixmap import Pixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Components.config import config
 from skin import loadSkin
 loadSkin(resolveFilename(SCOPE_PLUGINS, 'Extensions/KeyAdder/VirtualKeyBoard_Icons/vkskin.xml'))
