@@ -24,7 +24,7 @@ from array import array
 from string import hexdigits
 from datetime import datetime
 from Components.MenuList import MenuList
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 import binascii
 import os
 from VirtualKeyBoard import VirtualKeyBoard
