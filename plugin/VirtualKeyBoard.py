@@ -114,7 +114,7 @@ class VirtualKeyBoard(Screen):
         self['key_red'] = StaticText(_('Exit'))
         self['key_green'] = StaticText(_('OK'))
         self['key_yellow'] = StaticText('')
-        self['key_blue'] = StaticText(_('Upper // Lower'))
+        self['key_blue'] = StaticText(_('Upper / Lower'))
         self['country'] = StaticText('')
         self['header'] = Label(self.title)
         self['text'] = Input(text=self.text, maxSize=self.maxSize, visible_width=self.visible_width, type=self.type, currPos=len(self.text), allMarked=self.allMarked)
