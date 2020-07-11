@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+from __future__ import division, print_function
 # Edit By RAED to OE2.5 images 10-03-2019
 # Edit By RAED Add IRDETO & PowerVU 14-03-2019
 # Edit By RAED Fix PowerVU 18-03-2019
@@ -392,7 +392,7 @@ def getOrb(session):
 			h = "W"
 		else:
 			h = "E"
-		desc = ("%d.%d%s") % (orbpos / 10, orbpos % 10, h)
+		desc = ("%d.%d%s") % (orbpos // 10, orbpos % 10, h)
 	return desc
 
 def findKeyPowerVU(session, SoftCamKey, key="00000000000000"):

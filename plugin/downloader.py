@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+from __future__ import division, print_function
 # Code by mfaraj57 and RAED (c) 2018
 
 from Components.ActionMap import ActionMap
@@ -139,9 +139,9 @@ class imagedownloadScreen(Screen):
             self.downloader.start().addCallback(self.responseCompleted).addErrback(self.responseFailed)
 
     def progress(self, current, total):
-        p = int(100 * (float(current) / float(total)))
+        p = int(100 * (float(current) // float(total)))
         self['activityslider'].setValue(p)
-        info = _('Downloading') + ' ' + '%d of %d kBytes' % (current / 1024, total / 1024)
+        info = _('Downloading') + ' ' + '%d of %d kBytes' % (current // 1024, total // 1024)
         self['package'].setText(self.name)
         self['status'].setText(info)
         self.setTitle(_('Downloading') + ' ' + str(p) + '%...')

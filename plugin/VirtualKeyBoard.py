@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+from __future__ import division, print_function
 import copy
 import skin
 from enigma import eListboxPythonMultiContent, gFont, getPrevAsciiCode, RT_HALIGN_CENTER, RT_VALIGN_CENTER, getDesktop
@@ -27,7 +27,7 @@ class VirtualKeyBoardList(MenuList):
         MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
         font = skin.fonts.get('VirtualKeyBoard', ('Regular', 28, 45))
         self.l.setFont(0, gFont(font[0], font[1]))
-        self.l.setFont(1, gFont(font[0], font[1] * 5 / 9))
+        self.l.setFont(1, gFont(font[0], font[1] * 5 // 9))
         self.l.setItemHeight(font[2])
 
 
@@ -114,7 +114,7 @@ class VirtualKeyBoard(Screen):
         self['key_red'] = StaticText(_('Exit'))
         self['key_green'] = StaticText(_('OK'))
         self['key_yellow'] = StaticText('')
-        self['key_blue'] = StaticText(_('Upper / Lower'))
+        self['key_blue'] = StaticText(_('Upper // Lower'))
         self['country'] = StaticText('')
         self['header'] = Label(self.title)
         self['text'] = Input(text=self.text, maxSize=self.maxSize, visible_width=self.visible_width, type=self.type, currPos=len(self.text), allMarked=self.allMarked)
@@ -2155,19 +2155,19 @@ class VirtualKeyBoard(Screen):
     def markSelectedKey_old(self):
         w, h = skin.parameters.get('VirtualKeyboard', (45, 45))
         if self.previousSelectedKey is not None:
-            self.list[self.previousSelectedKey / 12] = self.list[self.previousSelectedKey / 12][:-1]
+            self.list[self.previousSelectedKey // 12] = self.list[self.previousSelectedKey // 12][:-1]
         try:
             width = self.key_sel.size().width()
         except:
             width = w
 
         try:
-            x = self.list[self.selectedKey / 12][self.selectedKey % 12 + 1][1]
+            x = self.list[self.selectedKey // 12][self.selectedKey % 12 + 1][1]
         except IndexError:
             self.selectedKey = self.max_key
-            x = self.list[self.selectedKey / 12][self.selectedKey % 12 + 1][1]
+            x = self.list[self.selectedKey // 12][self.selectedKey % 12 + 1][1]
 
-        self.list[self.selectedKey / 12].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, h), png=self.key_sel))
+        self.list[self.selectedKey // 12].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, h), png=self.key_sel))
         self.previousSelectedKey = self.selectedKey
         self['list'].setList(self.list)
 
@@ -2182,7 +2182,7 @@ class VirtualKeyBoard(Screen):
 
     def okClicked_old(self):
         self.smsChar = None
-        text = (self.shiftMode & 1 and self.shiftkeys_list or self.shiftMode & 2 and self.thirdkeys_list or self.keys_list)[self.selectedKey / 12][self.selectedKey % 12].encode('UTF-8')
+        text = (self.shiftMode & 1 and self.shiftkeys_list or self.shiftMode & 2 and self.thirdkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12].encode('UTF-8')
         if text == 'EXIT':
             self.close(None)
         elif text == 'BACKSPACE':
@@ -2219,23 +2219,23 @@ class VirtualKeyBoard(Screen):
 
     def left_old(self):
         self.smsChar = None
-        self.selectedKey = self.selectedKey / 12 * 12 + (self.selectedKey + 11) % 12
+        self.selectedKey = self.selectedKey // 12 * 12 + (self.selectedKey + 11) % 12
         if self.selectedKey > self.max_key:
             self.selectedKey = self.max_key
         self.markSelectedKey_old()
 
     def right_old(self):
         self.smsChar = None
-        self.selectedKey = self.selectedKey / 12 * 12 + (self.selectedKey + 1) % 12
+        self.selectedKey = self.selectedKey // 12 * 12 + (self.selectedKey + 1) % 12
         if self.selectedKey > self.max_key:
-            self.selectedKey = self.selectedKey / 12 * 12
+            self.selectedKey = self.selectedKey // 12 * 12
         self.markSelectedKey_old()
 
     def up_old(self):
         self.smsChar = None
         self.selectedKey -= 12
         if self.selectedKey < 0:
-            self.selectedKey = self.max_key / 12 * 12 + self.selectedKey % 12
+            self.selectedKey = self.max_key // 12 * 12 + self.selectedKey % 12
             if self.selectedKey > self.max_key:
                 self.selectedKey -= 12
         self.markSelectedKey_old()
@@ -4780,9 +4780,9 @@ class VirtualKeyBoard(Screen):
         res = [keys]
         text = []
         offset = 14 - self.keyboardWidth
-        x = self.width * offset / 2
+        x = self.width * offset // 2
         if offset % 2:
-            x += self.width / 2
+            x += self.width // 2
         for key in keys:
             image = self.keyImages[self.shiftLevel].get(key, None)
             if image:
@@ -4801,21 +4801,21 @@ class VirtualKeyBoard(Screen):
 
     def markSelectedKey(self):
         if self.previousSelectedKey is not None:
-            self.list[self.previousSelectedKey / self.keyboardWidth] = self.list[self.previousSelectedKey / self.keyboardWidth][:-1]
+            self.list[self.previousSelectedKey // self.keyboardWidth] = self.list[self.previousSelectedKey // self.keyboardWidth][:-1]
         if self.selectedKey > self.maxKey:
             self.selectedKey = self.maxKey
-        x = self.list[self.selectedKey / self.keyboardWidth][self.selectedKey % self.keyboardWidth + 1][1]
+        x = self.list[self.selectedKey // self.keyboardWidth][self.selectedKey % self.keyboardWidth + 1][1]
         if self.key_sel is None:
             width = self.width
         else:
             width = self.key_sel.size().width()
-        self.list[self.selectedKey / self.keyboardWidth].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(width, self.height), png=self.key_sel))
+        self.list[self.selectedKey // self.keyboardWidth].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(width, self.height), png=self.key_sel))
         self.previousSelectedKey = self.selectedKey
         self['list'].setList(self.list)
 
     def okClicked(self):
         self.smsChar = None
-        text = self.keyList[self.shiftLevel][self.selectedKey / self.keyboardWidth][self.selectedKey % self.keyboardWidth].encode('UTF-8')
+        text = self.keyList[self.shiftLevel][self.selectedKey // self.keyboardWidth][self.selectedKey % self.keyboardWidth].encode('UTF-8')
         if text == u'':
             pass
         elif text == u'ALL':
@@ -4917,23 +4917,23 @@ class VirtualKeyBoard(Screen):
         self.smsChar = None
         self.selectedKey -= self.keyboardWidth
         if self.selectedKey < 0:
-            self.selectedKey = self.maxKey / self.keyboardWidth * self.keyboardWidth + self.selectedKey % self.keyboardWidth
+            self.selectedKey = self.maxKey // self.keyboardWidth * self.keyboardWidth + self.selectedKey % self.keyboardWidth
             if self.selectedKey > self.maxKey:
                 self.selectedKey -= self.keyboardWidth
         self.markSelectedKey()
 
     def left(self):
         self.smsChar = None
-        self.selectedKey = self.selectedKey / self.keyboardWidth * self.keyboardWidth + (self.selectedKey + self.keyboardWidth - 1) % self.keyboardWidth
+        self.selectedKey = self.selectedKey // self.keyboardWidth * self.keyboardWidth + (self.selectedKey + self.keyboardWidth - 1) % self.keyboardWidth
         if self.selectedKey > self.maxKey:
             self.selectedKey = self.maxKey
         self.markSelectedKey()
 
     def right(self):
         self.smsChar = None
-        self.selectedKey = self.selectedKey / self.keyboardWidth * self.keyboardWidth + (self.selectedKey + 1) % self.keyboardWidth
+        self.selectedKey = self.selectedKey // self.keyboardWidth * self.keyboardWidth + (self.selectedKey + 1) % self.keyboardWidth
         if self.selectedKey > self.maxKey:
-            self.selectedKey = self.selectedKey / self.keyboardWidth * self.keyboardWidth
+            self.selectedKey = self.selectedKey // self.keyboardWidth * self.keyboardWidth
         self.markSelectedKey()
 
     def down(self):
