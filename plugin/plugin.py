@@ -33,9 +33,9 @@ resheight = getDesktop(0).size().height()
 config.plugins.KeyAdder = ConfigSubsection()
 config.plugins.KeyAdder.lastcaid = ConfigText(default='0', fixed_size=False)
 
-def debug(label,data):
+def debug(label, data):
     data=str(data)
-    open("/tmp/addkey.log","w").write("\n"+label+":>"+data)
+    open("/tmp/addkey.log", "w").write("\n"+label+":>"+data)
 
 def getnewcaid(SoftCamKey):
    ##T 0001
@@ -144,18 +144,18 @@ class AddKeyUpdate(Screen):
             if select[1] == "softcam.org":
                 myurl = 'http://www.softcam.org/deneme6.php?file=SoftCam.Key'
                 command = 'wget -O %s %s' % (SoftCamKey, myurl)
-                self.session.open(imagedownloadScreen,'softcam',SoftCamKey, myurl)
+                self.session.open(imagedownloadScreen, 'softcam', SoftCamKey, myurl)
             elif select[1] == "Serjoga softcam":
                 myurl = 'http://raw.githubusercontent.com/audi06/SoftCam.Key_Serjoga/master/SoftCam.Key'
                 command = 'wget -q %s %s %s %s' % (crt, agent, SoftCamKey, myurl)
-                self.session.open(imagedownloadScreen,'softcam',SoftCamKey,myurl)
+                self.session.open(imagedownloadScreen, 'softcam', SoftCamKey, myurl)
             elif select[1] == "enigma1969 softcam":
                 myurl = 'http://drive.google.com/uc?authuser=0&id=1aujij43w7qAyPHhfBLAN9sE-BZp8_AwI&export=download'
                 command = 'wget -O %s %s' % (SoftCamKey, myurl)
-                self.session.open(imagedownloadScreen,'softcam',SoftCamKey,myurl)
+                self.session.open(imagedownloadScreen, 'softcam', SoftCamKey, myurl)
             else:
                 self.close()
-            debug("command",command)
+            debug("command", command)
             self.close()
       
     def showmenulist(self, datalist):
@@ -286,7 +286,7 @@ def getCAIDS(session):
 	info = service and service.info()
 	caids = info and info.getInfoObject(iServiceInformation.sCAIDs)
 	caidstr = "None"
-	if caids: caidstr = " ".join(["%04X (%d)" % (x,x) for x in sorted(caids)])
+	if caids: caidstr = " ".join(["%04X (%d)" % (x, x) for x in sorted(caids)])
 	return caidstr
 
 def keymenu(session, service=None):
@@ -361,8 +361,8 @@ def setKeyCallback(session, SoftCamKey, key):
 			eConsoleAppContainer().execute("/etc/init.d/softcam restart")
 			session.open(MessageBox, _("Irdeto key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
 	elif key:
-		   session.openWithCallback(boundFunction(setKeyCallback, session,SoftCamKey), HexKeyBoard,
-			title=_("Invalid key, length is %d" % len(key)), text=key.ljust(16,'*'))
+		   session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
+			title=_("Invalid key, length is %d" % len(key)), text=key.ljust(16, '*'))
 			#title=_("Invalid key, length is %d expecting 16." % len(key)), text=key.ljust(16,'*'))
 
 def getHash(session):
@@ -455,6 +455,6 @@ def main(session, **kwargs):
     session.open(AddKeyUpdate)
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "Key Adder" , description = "Add BISS, PowerVU, Irdeto and Tandberg keys to current service", icon="plugin.png",
+	return [PluginDescriptor(name = "Key Adder", description = "Add BISS, PowerVU, Irdeto and Tandberg keys to current service", icon="plugin.png",
 		where = [PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU],
 		fnc = main, needsRestart = False)]

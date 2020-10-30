@@ -7,7 +7,7 @@ from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from enigma import eTimer, eConsoleAppContainer,getDesktop
+from enigma import eTimer, eConsoleAppContainer, getDesktop
 from os import path as os_path
 from Components.GUIComponent import *
 from Components.HTMLComponent import *
@@ -48,9 +48,9 @@ else:
 <widget name="slider" position="0,185" size="850,20" borderWidth="1" transparent="1" />
 </screen>"""
 
-def log(label,data):
+def log(label, data):
     data=str(data)
-    open("/tmp/addkey.log","a").write("\n"+label+":>"+data)
+    open("/tmp/addkey.log", "a").write("\n"+label+":>"+data)
     
 class imagedownloadScreen(Screen):
     def __init__(self, session, name='', target='', url=''):
@@ -90,10 +90,10 @@ class imagedownloadScreen(Screen):
         self.count_success = 0
         self.count_failed = 0
         self.downloading = True
-        self.downloadfile2(self.url,self.target)
+        self.downloadfile2(self.url, self.target)
 
-    def downloadfile(self,url,target):
-            import ssl,urllib2
+    def downloadfile(self, url, target):
+            import ssl, urllib2
             list1 = []
             try:
                 req = urllib2.Request(url)
@@ -180,7 +180,7 @@ class imagedownloadScreen(Screen):
         except:
             pass
         if self.downloading:
-            self.session.openWithCallback(self.abort,MessageBox, _('Are you sure to stop download.'), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.abort, MessageBox, _('Are you sure to stop download.'), MessageBox.TYPE_YESNO)
         else:
             self.close(False)
 
