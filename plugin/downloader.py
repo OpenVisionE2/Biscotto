@@ -49,19 +49,19 @@ else:
 </screen>"""
 
 def log(label, data):
-    data=str(data)
-    open("/tmp/addkey.log", "a").write("\n"+label+":>"+data)
+    data = str(data)
+    open("/tmp/addkey.log", "a").write("\n" + label + ":>" + data)
     
 class imagedownloadScreen(Screen):
     def __init__(self, session, name='', target='', url=''):
         Screen.__init__(self, session)
         self.skin = SKIN_imagedownloadScreen
         self.target = target
-        self.name=name
-        self.url=url
-        self.shown=True
+        self.name = name
+        self.url = url
+        self.shown = True
         self.count_success = 0
-        self.success=False 
+        self.success = False 
         self['activityslider'] = ProgressBar()
         self['activityslider'].setRange((0, 100))
         self['activityslider'].setValue(0)
@@ -153,7 +153,7 @@ class imagedownloadScreen(Screen):
         self['status'].setText(info)
         self.setTitle(_('Download completed successfully.'))
         self.downloading = False
-        self.success=True
+        self.success = True
         self.instance.show()
 
     def responseFailed(self, failure_instance=None, error_message=''):
@@ -169,7 +169,7 @@ class imagedownloadScreen(Screen):
         self.container = eConsoleAppContainer()
         self.container.execute(cmd)
         self.downloading = False
-        self.success=False
+        self.success = False
         self['key_green'].hide()
         self.instance.show()
         self.remove_target()
@@ -177,7 +177,7 @@ class imagedownloadScreen(Screen):
 
     def dexit(self):
         try:
-            path=os.path.split(self.target)[0]
+            path = os.path.split(self.target)[0]
         except:
             pass
         if self.downloading:
@@ -194,7 +194,7 @@ class imagedownloadScreen(Screen):
                 pass
 
     def abort(self,answer=True):
-        if answer==False:
+        if answer == False:
             return
         if not self.downloading:
             if os_path.exists('/tmp/download_install.log'):

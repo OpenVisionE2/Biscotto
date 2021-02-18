@@ -6,7 +6,7 @@ from __future__ import print_function
 
 from enigma import eConsoleAppContainer, eDVBDB, iServiceInformation, eTimer, loadPNG, getDesktop, RT_WRAP, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, gFont
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from Components.config import config,  ConfigText, ConfigSubsection
+from Components.config import config, ConfigText, ConfigSubsection
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
@@ -34,43 +34,43 @@ config.plugins.KeyAdder = ConfigSubsection()
 config.plugins.KeyAdder.lastcaid = ConfigText(default='0', fixed_size=False)
 
 def debug(label, data):
-    data=str(data)
-    open("/tmp/addkey.log", "w").write("\n"+label+":>"+data)
+    data = str(data)
+    open("/tmp/addkey.log", "w").write("\n" + label + ":>" + data)
 
 def getnewcaid(SoftCamKey):
    ##T 0001
    import os
-   caidnumbers=[]
-   newkey=1
+   caidnumbers = []
+   newkey = 1
    if os_path.exists(SoftCamKey):
       try:
-          lines=open(SoftCamKey).readlines()
+          lines = open(SoftCamKey).readlines()
           for line in lines:
-              line=line.strip()
+              line = line.strip()
               if line.startswith('T'):
-                caidnumber=line[2:6]
+                caidnumber = line[2:6]
                 try:
                         caidnumbers.append(int(caidnumber))
                 except:
                         continue
       except:
-          caidnumbers=[]
+          caidnumbers = []
       try:
-              newcaid=max(caidnumbers)+1
+              newcaid = max(caidnumbers) + 1
       except:
-              newcaid=1
-      formatter="{:04}"
-      newcaid=formatter.format(newcaid)
-      saved_caid=int(config.plugins.KeyAdder.lastcaid.value)+1
-      if saved_caid>newcaid:
-          newcaid=saved_caid
-      elif newcaid>saved_caid:                                                    
-         config.plugins.KeyAdder.lastcaid.value=newcaid
+              newcaid = 1
+      formatter = "{:04}"
+      newcaid = formatter.format(newcaid)
+      saved_caid = int(config.plugins.KeyAdder.lastcaid.value) + 1
+      if saved_caid > newcaid:
+          newcaid = saved_caid
+      elif newcaid > saved_caid:                                                    
+         config.plugins.KeyAdder.lastcaid.value = newcaid
          config.plugins.KeyAdder.lastcaid.save()
-      elif  newcaid==9999:
-          config.plugins.KeyAdder.lastcaid.value="1111"
+      elif newcaid == 9999:
+          config.plugins.KeyAdder.lastcaid.value = "1111"
           config.plugins.KeyAdder.lastcaid.save()
-          newcaid=="1111"
+          newcaid == "1111"
       return newcaid 
 
 def findSoftCamKey():
@@ -117,9 +117,9 @@ class AddKeyUpdate(Screen):
 
     def select(self):
         index = self['menu'].getSelectionIndex()
-        if index==0:
+        if index == 0:
                 keymenu(self.session)
-        elif index==1:
+        elif index == 1:
                 self.siteselect()
         else:
             self.close()
@@ -137,9 +137,9 @@ class AddKeyUpdate(Screen):
         cmdlist = []
         SoftCamKey = findSoftCamKey()
         from downloader import imagedownloadScreen
-        agent='--header="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17"'
-        crt="--debug --no-check-certificate"
-        command=''
+        agent = '--header="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17"'
+        crt = "--debug --no-check-certificate"
+        command = ''
         if select: 
             if select[1] == "softcam.org":
                 myurl = 'http://www.softcam.org/deneme6.php?file=SoftCam.Key'
@@ -315,9 +315,9 @@ def keymenu(session, service=None):
 		   session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
 			title=_("Please enter new key:"), text=findKeyIRDETO(session, SoftCamKey))
 	     elif caids and 0x1010 in caids:
-                   newcaid=getnewcaid(SoftCamKey)
+                   newcaid = getnewcaid(SoftCamKey)
 		   session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
-			title=_("Please enter new key for caid:"+newcaid), text=findKeyTandberg(session, SoftCamKey))
+			title=_("Please enter new key for caid:" + newcaid), text=findKeyTandberg(session, SoftCamKey))
 
 def setKeyCallback(session, SoftCamKey, key):
         global newcaid
@@ -349,7 +349,7 @@ def setKeyCallback(session, SoftCamKey, key):
 			session.open(MessageBox, _("BISS key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
              else:
 		if key != findKeyTandberg(session, SoftCamKey, ""): # no change was made ## Tandberg
-                        newcaid=getnewcaid(SoftCamKey)
+                        newcaid = getnewcaid(SoftCamKey)
                         keystr = "T %s 01 %s" % (newcaid, key) 
 			name = ServiceReference(session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
 			datastr = "\n%s ; Added on %s for %s at %s\n" % (keystr, datetime.now(), name, getOrb(session))
