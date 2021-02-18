@@ -15,7 +15,7 @@ from Components.ProgressBar import ProgressBar
 from Tools.Downloader import downloadWithProgress
 import os
 import time
- 
+
 #### imagedownloadScreen screen
 sz_w = getDesktop(0).size().width()
 if sz_w == 1280:
@@ -52,7 +52,7 @@ else:
 def log(label, data):
     data = str(data)
     open("/tmp/addkey.log", "a").write("\n" + label + ":>" + data)
-    
+
 
 class imagedownloadScreen(Screen):
     def __init__(self, session, name='', target='', url=''):
@@ -63,7 +63,7 @@ class imagedownloadScreen(Screen):
         self.url = url
         self.shown = True
         self.count_success = 0
-        self.success = False 
+        self.success = False
         self['activityslider'] = ProgressBar()
         self['activityslider'].setRange((0, 100))
         self['activityslider'].setValue(0)
@@ -115,7 +115,7 @@ class imagedownloadScreen(Screen):
                 if hasattr(e, 'code'):
                     print('We failed with error code - %s.' % e.code)
                     if '401' in str(e.code):
-                        self['status'].setText('Falied to download softcam-401')  
+                        self['status'].setText('Falied to download softcam-401')
                         return None
                     if '404' in str(e.code):
                         self['status'].setText('Falied to download softcam-404')
@@ -151,7 +151,7 @@ class imagedownloadScreen(Screen):
 
     def responseCompleted(self, data=None):
         print('[Softcam downloader] Download succeeded. ')
-        info = 'Download completed successfully.\npress Ok To Exit'   
+        info = 'Download completed successfully.\npress Ok To Exit'
         self['status'].setText(info)
         self.setTitle(_('Download completed successfully.'))
         self.downloading = False
@@ -211,9 +211,9 @@ class imagedownloadScreen(Screen):
             self.remove_target()
             try:
                 self.close(False)
-               
+
             except:
                 pass
-        else: 
+        else:
             self.close(False)
         return

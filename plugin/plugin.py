@@ -66,14 +66,14 @@ def getnewcaid(SoftCamKey):
       saved_caid = int(config.plugins.KeyAdder.lastcaid.value) + 1
       if saved_caid > newcaid:
           newcaid = saved_caid
-      elif newcaid > saved_caid:                                                    
+      elif newcaid > saved_caid:
          config.plugins.KeyAdder.lastcaid.value = newcaid
          config.plugins.KeyAdder.lastcaid.save()
       elif newcaid == 9999:
           config.plugins.KeyAdder.lastcaid.value = "1111"
           config.plugins.KeyAdder.lastcaid.save()
           newcaid == "1111"
-      return newcaid 
+      return newcaid
 
 
 def findSoftCamKey():
@@ -135,7 +135,7 @@ class AddKeyUpdate(Screen):
         list1.append(("enigma1969 softcam", "enigma1969 softcam"))
         from Screens.ChoiceBox import ChoiceBox
         self.session.openWithCallback(self.Downloadkeys, ChoiceBox, _('select site to downloan file'), list1)
-           
+
     def Downloadkeys(self, select, SoftCamKey=None):
         self.list = []
         cmdlist = []
@@ -144,7 +144,7 @@ class AddKeyUpdate(Screen):
         agent = '--header="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17"'
         crt = "--debug --no-check-certificate"
         command = ''
-        if select: 
+        if select:
             if select[1] == "softcam.org":
                 myurl = 'http://www.softcam.org/deneme6.php?file=SoftCam.Key'
                 command = 'wget -O %s %s' % (SoftCamKey, myurl)
@@ -161,7 +161,7 @@ class AddKeyUpdate(Screen):
                 self.close()
             debug("command", command)
             self.close()
-      
+
     def showmenulist(self, datalist):
         cacolor = 16776960
         cbcolor = 16753920
@@ -281,7 +281,7 @@ def hasCAID(session):
 	except:
 		pass
 	try:
-		return eDVBDB.getInstance().hasCAID(ref, 0x2600) # BISS	
+		return eDVBDB.getInstance().hasCAID(ref, 0x2600) # BISS
 	except:
 		pass
 	try:
@@ -362,10 +362,10 @@ def setKeyCallback(session, SoftCamKey, key):
              else:
 		if key != findKeyTandberg(session, SoftCamKey, ""): # no change was made ## Tandberg
                         newcaid = getnewcaid(SoftCamKey)
-                        keystr = "T %s 01 %s" % (newcaid, key) 
+                        keystr = "T %s 01 %s" % (newcaid, key)
 			name = ServiceReference(session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
 			datastr = "\n%s ; Added on %s for %s at %s\n" % (keystr, datetime.now(), name, getOrb(session))
-			restartmess = "\n*** Need to Restart emu TO Active new key ***\n"		
+			restartmess = "\n*** Need to Restart emu TO Active new key ***\n"
 			open(SoftCamKey, "a").write(datastr)
 			eConsoleAppContainer().execute("/etc/init.d/softcam restart")
 			session.open(MessageBox, _("Tandberg key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
