@@ -18,7 +18,7 @@ import time
  
 #### imagedownloadScreen screen
 sz_w = getDesktop(0).size().width()
-if sz_w == 1280 :
+if sz_w == 1280:
         SKIN_imagedownloadScreen = """
 <screen name="imagedownloadScreen" position="center,center" size="560,155" title="Downloading image...">
 <widget name="activityslider" position="20,50" size="510,20" borderWidth="1" transparent="1" />
@@ -35,7 +35,7 @@ else:
 
 #### progress screen
 sz_w = getDesktop(0).size().width()
-if sz_w == 1280 :
+if sz_w == 1280:
         SKIN_Progress = """
 <screen position="350,250"  size="550,155" title="Command execution..." >
 <widget name="text" position="10,10"  size="550,130" font="Console;18" />

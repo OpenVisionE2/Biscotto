@@ -64,7 +64,7 @@ def getnewcaid(SoftCamKey):
       saved_caid=int(config.plugins.KeyAdder.lastcaid.value)+1
       if saved_caid>newcaid:
           newcaid=saved_caid
-      elif newcaid>saved_caid :                                                    
+      elif newcaid>saved_caid:                                                    
          config.plugins.KeyAdder.lastcaid.value=newcaid
          config.plugins.KeyAdder.lastcaid.save()
       elif  newcaid==9999:
@@ -201,7 +201,7 @@ class HexKeyBoard(VirtualKeyBoard):
 		self.skinName = "VirtualKeyBoard"
 		self.keys_list = [[[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
 					[u"OK", u"A", u"B", u"C", u"D", u"E", u"F", u"OK", u"LEFT", u"RIGHT", u"ALL", u"CLEAR"]]]
-		self.locales = { "hex" : [_("HEX"), _("HEX"), self.keys_list] }
+		self.locales = {"hex": [_("HEX"), _("HEX"), self.keys_list]}
 		self.lang = "hex"
 		try:
 		     self.setLocale()

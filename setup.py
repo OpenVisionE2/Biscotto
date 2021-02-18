@@ -4,7 +4,7 @@ from distutils.core import setup
 import setup_translate
 
 pkg = 'Extensions.KeyAdder'
-setup (name='enigma2-plugin-extensions-keyadder',
+setup(name='enigma2-plugin-extensions-keyadder',
        version='2.2',
        description='Add BISS, PowerVU, Irdeto and Tandberg keys to current service.',
        packages=[pkg],
