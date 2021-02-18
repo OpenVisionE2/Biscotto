@@ -33,9 +33,11 @@ resheight = getDesktop(0).size().height()
 config.plugins.KeyAdder = ConfigSubsection()
 config.plugins.KeyAdder.lastcaid = ConfigText(default='0', fixed_size=False)
 
+
 def debug(label, data):
     data = str(data)
     open("/tmp/addkey.log", "w").write("\n" + label + ":>" + data)
+
 
 def getnewcaid(SoftCamKey):
    ##T 0001
@@ -73,6 +75,7 @@ def getnewcaid(SoftCamKey):
           newcaid == "1111"
       return newcaid 
 
+
 def findSoftCamKey():
 	paths = ["/etc/tuxbox/config/oscam-emu", "/etc/tuxbox/config/oscam-trunk", "/etc/tuxbox/config/oscam", "/etc/tuxbox/config/ncam", "/etc/tuxbox/config", "/etc", "/var/keys", "/usr/keys"]
 	if os_path.exists("/tmp/.oscam/oscam.version"):
@@ -85,6 +88,7 @@ def findSoftCamKey():
 		if os_path.exists(softcamkey):
 			return softcamkey
 	return "/usr/keys/SoftCam.Key"
+
 
 class AddKeyUpdate(Screen):
     if reswidth == 1920:
@@ -195,6 +199,7 @@ class AddKeyUpdate(Screen):
         self['menu'].l.setList(menulist)
         self['menu'].show()
 
+
 class HexKeyBoard(VirtualKeyBoard):
 	def __init__(self, session, title="", **kwargs):
 		VirtualKeyBoard.__init__(self, session, title, **kwargs)
@@ -214,6 +219,7 @@ class HexKeyBoard(VirtualKeyBoard):
                 self.keys_list = [[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
 					[u"OK", u"A", u"B", u"C", u"D", u"E", u"F", u"OK", u"LEFT", u"RIGHT", u"ALL", u"CLEAR"]]
 
+
 table = array('L')
 for byte in range(256):
 	crc = 0
@@ -224,6 +230,7 @@ for byte in range(256):
 			crc >>= 1
 		byte >>= 1
 	table.append(crc)
+
 
 def crc32(string):
       if PY3:
@@ -240,6 +247,7 @@ def crc32(string):
       else:
                 return value ^ 0xffffffffL
 
+
 def crc323(string):
       if PY3:
                 value = 0xe00 ^ 0xffffffff
@@ -254,6 +262,7 @@ def crc323(string):
                 return value ^ 0xffffffff
       else:
                 return value ^ 0xffffffffL
+
 
 def hasCAID(session):
 	service = session.nav.getCurrentService()
@@ -285,6 +294,7 @@ def hasCAID(session):
 		pass
 	return False
 
+
 def getCAIDS(session):
 	service = session.nav.getCurrentService()
 	info = service and service.info()
@@ -293,6 +303,7 @@ def getCAIDS(session):
 	if caids:
 	    caidstr = " ".join(["%04X (%d)" % (x, x) for x in sorted(caids)])
 	return caidstr
+
 
 def keymenu(session, service=None):
 	service = session.nav.getCurrentService()
@@ -318,6 +329,7 @@ def keymenu(session, service=None):
                    newcaid = getnewcaid(SoftCamKey)
 		   session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
 			title=_("Please enter new key for caid:" + newcaid), text=findKeyTandberg(session, SoftCamKey))
+
 
 def setKeyCallback(session, SoftCamKey, key):
         global newcaid
@@ -371,6 +383,7 @@ def setKeyCallback(session, SoftCamKey, key):
 			title=_("Invalid key, length is %d" % len(key)), text=key.ljust(16, '*'))
 			#title=_("Invalid key, length is %d expecting 16." % len(key)), text=key.ljust(16,'*'))
 
+
 def getHash(session):
 	ref = session.nav.getCurrentlyPlayingServiceReference()
 	sid = ref.getUnsignedData(1)
@@ -387,11 +400,13 @@ def getHash(session):
 		data = "%04X%08X" % (sid, namespace)
 	return crc32(binascii.unhexlify(data))
 
+
 def getonidsid(session):
 	ref = session.nav.getCurrentlyPlayingServiceReference()
 	sid = ref.getUnsignedData(1)
 	onid = ref.getUnsignedData(3)
 	return "%04X%04X" % (onid, sid)
+
 
 def getOrb(session):
 	ref = session.nav.getCurrentlyPlayingServiceReference()
@@ -409,6 +424,7 @@ def getOrb(session):
 		desc = ("%d.%d%s") % (orbpos / 10, orbpos % 10, h)
 	return desc
 
+
 def findKeyPowerVU(session, SoftCamKey, key="00000000000000"):
 	keystart = "P %s" % getonidsid(session)
 	keyline = ""
@@ -420,6 +436,7 @@ def findKeyPowerVU(session, SoftCamKey, key="00000000000000"):
 		return keyline.split()[3]
 	else:
 		return key
+
 
 def findKeyBISS(session, SoftCamKey, key="0000000000000000"):
 	keystart = "F %08X" % getHash(session)
@@ -433,6 +450,7 @@ def findKeyBISS(session, SoftCamKey, key="0000000000000000"):
 	else:
 		return key
 
+
 def findKeyTandberg(session, SoftCamKey, key="0000000000000000"):
 	keystart = "T 0001"
 	keyline = ""
@@ -444,6 +462,7 @@ def findKeyTandberg(session, SoftCamKey, key="0000000000000000"):
 		return keyline.split()[3]
 	else:
 		return key
+
 
 def findKeyIRDETO(session, SoftCamKey, key="00000000000000000000000000000000"):
 	keystart = "I 0604"
@@ -457,8 +476,10 @@ def findKeyIRDETO(session, SoftCamKey, key="00000000000000000000000000000000"):
 	else:
 		return key
 
+
 def main(session, **kwargs):
     session.open(AddKeyUpdate)
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name="Key Adder", description="Add BISS, PowerVU, Irdeto and Tandberg keys to current service", icon="plugin.png",

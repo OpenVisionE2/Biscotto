@@ -21,6 +21,7 @@ from Components.config import config
 from skin import loadSkin
 loadSkin(resolveFilename(SCOPE_PLUGINS, 'Extensions/KeyAdder/VirtualKeyBoard_Icons/vkskin.xml'))
 
+
 class VirtualKeyBoardList(MenuList):
 
     def __init__(self, list, enableWrapAround=False):

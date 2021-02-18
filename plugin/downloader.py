@@ -48,10 +48,12 @@ else:
 <widget name="slider" position="0,185" size="850,20" borderWidth="1" transparent="1" />
 </screen>"""
 
+
 def log(label, data):
     data = str(data)
     open("/tmp/addkey.log", "a").write("\n" + label + ":>" + data)
     
+
 class imagedownloadScreen(Screen):
     def __init__(self, session, name='', target='', url=''):
         Screen.__init__(self, session)
