@@ -259,10 +259,14 @@ def hasCAID(session):
 	service = session.nav.getCurrentService()
 	info = service and service.info()
 	caids = info and info.getInfoObject(iServiceInformation.sCAIDs)
-	if caids and 0xe00 in caids: return True
-	if caids and 0x2600 in caids: return True
-	if caids and 0x604 in caids: return True
-	if caids and 0x1010 in caids: return True
+	if caids and 0xe00 in caids:
+	    return True
+	if caids and 0x2600 in caids:
+	    return True
+	if caids and 0x604 in caids:
+	    return True
+	if caids and 0x1010 in caids:
+	    return True
 	try:
 		return eDVBDB.getInstance().hasCAID(ref, 0xe00)	# PowerVU
 	except:
@@ -286,7 +290,8 @@ def getCAIDS(session):
 	info = service and service.info()
 	caids = info and info.getInfoObject(iServiceInformation.sCAIDs)
 	caidstr = "None"
-	if caids: caidstr = " ".join(["%04X (%d)" % (x, x) for x in sorted(caids)])
+	if caids:
+	    caidstr = " ".join(["%04X (%d)" % (x, x) for x in sorted(caids)])
 	return caidstr
 
 def keymenu(session, service=None):
@@ -321,7 +326,8 @@ def setKeyCallback(session, SoftCamKey, key):
 	caids = info and info.getInfoObject(iServiceInformation.sCAIDs)
 	SoftCamKey = findSoftCamKey()
 	ref = session.nav.getCurrentlyPlayingServiceReference()
-	if key: key = "".join(c for c in key if c in hexdigits).upper()
+	if key:
+	    key = "".join(c for c in key if c in hexdigits).upper()
 	if key and len(key) == 14:
 		if key != findKeyPowerVU(session, SoftCamKey, ""): # no change was made ## PowerVU
 			keystr = "P %s 00 %s" % (getonidsid(session), key)
