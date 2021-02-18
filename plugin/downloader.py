@@ -93,7 +93,8 @@ class imagedownloadScreen(Screen):
         self.downloadfile2(self.url, self.target)
 
     def downloadfile(self, url, target):
-            import ssl, urllib2
+            import ssl
+            import urllib2
             list1 = []
             try:
                 req = urllib2.Request(url)
