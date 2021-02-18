@@ -128,7 +128,7 @@ class imagedownloadScreen(Screen):
                         self['status'].setText('Falied to download softcam-')
                         return None
 
-    def downloadfile2(self,url=None,ofile=''):
+    def downloadfile2(self, url=None, ofile=''):
         debug = True
         if True:
             self['package'].setText(self.name)
@@ -193,7 +193,7 @@ class imagedownloadScreen(Screen):
             except:
                 pass
 
-    def abort(self,answer=True):
+    def abort(self, answer=True):
         if answer == False:
             return
         if not self.downloading:
