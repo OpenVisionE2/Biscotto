@@ -23,7 +23,7 @@ loadSkin(resolveFilename(SCOPE_PLUGINS, 'Extensions/KeyAdder/VirtualKeyBoard_Ico
 
 class VirtualKeyBoardList(MenuList):
 
-    def __init__(self, list, enableWrapAround = False):
+    def __init__(self, list, enableWrapAround=False):
         MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
         font = skin.fonts.get('VirtualKeyBoard', ('Regular', 28, 45))
         self.l.setFont(0, gFont(font[0], font[1]))
@@ -33,7 +33,7 @@ class VirtualKeyBoardList(MenuList):
 
 class VirtualKeyBoard(Screen):
 
-    def __init__(self, session, title = '', text = '', maxSize = False, visible_width = False, type = '', currPos = 0, allMarked = False):
+    def __init__(self, session, title='', text='', maxSize=False, visible_width=False, type='', currPos=0, allMarked=False):
         Screen.__init__(self, session)
         self.title = title
         self.text = text

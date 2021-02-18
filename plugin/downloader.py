@@ -128,7 +128,7 @@ class imagedownloadScreen(Screen):
                         self['status'].setText('Falied to download softcam-')
                         return None
 
-    def downloadfile2(self,url = None,ofile=''):
+    def downloadfile2(self,url=None,ofile=''):
         debug = True
         if True:
             self['package'].setText(self.name)
@@ -147,7 +147,7 @@ class imagedownloadScreen(Screen):
         self['status'].setText(info)
         self.setTitle(_('Downloading') + ' ' + str(p) + '%...')
 
-    def responseCompleted(self, data = None):
+    def responseCompleted(self, data=None):
         print('[Softcam downloader] Download succeeded. ')
         info = 'Download completed successfully.\npress Ok To Exit'   
         self['status'].setText(info)
@@ -156,7 +156,7 @@ class imagedownloadScreen(Screen):
         self.success=True
         self.instance.show()
 
-    def responseFailed(self, failure_instance = None, error_message = ''):
+    def responseFailed(self, failure_instance=None, error_message=''):
         print('[Softcam downloader] Download failed. ')
         self.error_message = error_message
         if error_message == '' and failure_instance is not None:

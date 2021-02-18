@@ -98,7 +98,7 @@ class AddKeyUpdate(Screen):
                        <widget name="menu" position="20,20" size="450,180" backgroundColor="#16000000" transparent = "0" />
                 </screen>'''
 
-    def __init__(self, session, title='', datalist = []):
+    def __init__(self, session, title='', datalist=[]):
         Screen.__init__(self, session)
         self['menu'] = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
         self['actions'] = ActionMap(['ColorActions', 'WizardActions'], {'back': self.close,
@@ -461,6 +461,6 @@ def main(session, **kwargs):
     session.open(AddKeyUpdate)
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "Key Adder", description = "Add BISS, PowerVU, Irdeto and Tandberg keys to current service", icon="plugin.png",
-		where = [PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU],
-		fnc = main, needsRestart = False)]
+	return [PluginDescriptor(name="Key Adder", description="Add BISS, PowerVU, Irdeto and Tandberg keys to current service", icon="plugin.png",
+		where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU],
+		fnc=main, needsRestart=False)]
