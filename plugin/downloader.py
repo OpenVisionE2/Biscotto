@@ -10,7 +10,6 @@ from Screens.Screen import Screen
 from enigma import eTimer, eConsoleAppContainer, getDesktop
 from os import path as os_path
 from Components.GUIComponent import *
-from Components.HTMLComponent import *
 from Components.ProgressBar import ProgressBar
 from Tools.Downloader import downloadWithProgress
 import os
