@@ -20,7 +20,7 @@ from datetime import datetime
 from Components.MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 import binascii
-from VirtualKeyBoard import VirtualKeyBoard
+from .VirtualKeyBoard import VirtualKeyBoard
 
 # python3
 from os import path as os_path
@@ -140,7 +140,7 @@ class AddKeyUpdate(Screen):
         self.list = []
         cmdlist = []
         SoftCamKey = findSoftCamKey()
-        from downloader import imagedownloadScreen
+        from .downloader import imagedownloadScreen
         agent = '--header="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17"'
         crt = "--debug --no-check-certificate"
         command = ''
