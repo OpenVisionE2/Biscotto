@@ -211,7 +211,7 @@ class HexKeyBoard(VirtualKeyBoard):
 		try:
 		     self.setLocale()
 		except:
-                     self.max_key = all
+		     self.max_key = all
 		     self.setLang()
 		self.buildVirtualKeyBoard()
 
