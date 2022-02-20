@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 # Code by mfaraj57 and RAED (c) 2018
 
 from Components.ActionMap import ActionMap
@@ -95,21 +95,21 @@ class imagedownloadScreen(Screen):
 
     def downloadfile(self, url, target):
             import ssl
-            import urllib2
+            import urllib.request, urllib.error, urllib.parse
             list1 = []
             try:
-                req = urllib2.Request(url)
+                req = urllib.request.Request(url)
                 try:
-                    response = urllib2.urlopen(req, context=ssl._create_unverified_context())
+                    response = urllib.request.urlopen(req, context=ssl._create_unverified_context())
                 except:
-                    response = urllib2.urlopen(req)
+                    response = urllib.request.urlopen(req)
                 data = response.read()
                 response.close()
                 with open(ofile, 'wb') as f:
                     f.write(r.content)
                 f.close()
                 self['status'].setText('softcam downloaded successfully')
-            except urllib2.URLError as e:
+            except urllib.error.URLError as e:
                 trace_error()
                 if hasattr(e, 'code'):
                     print('We failed with error code - %s.' % e.code)

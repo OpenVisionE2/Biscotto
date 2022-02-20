@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Edit & update By RAED to OpenVison images
 
-from __future__ import print_function
+
 
 from enigma import eConsoleAppContainer, eDVBDB, iServiceInformation, eTimer, loadPNG, getDesktop, RT_WRAP, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, gFont
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
@@ -20,7 +20,7 @@ from datetime import datetime
 from Components.MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 import binascii
-from VirtualKeyBoard import VirtualKeyBoard
+from .VirtualKeyBoard import VirtualKeyBoard
 
 # python3
 from os import path as os_path
@@ -140,7 +140,7 @@ class AddKeyUpdate(Screen):
         self.list = []
         cmdlist = []
         SoftCamKey = findSoftCamKey()
-        from downloader import imagedownloadScreen
+        from .downloader import imagedownloadScreen
         agent = '--header="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17"'
         crt = "--debug --no-check-certificate"
         command = ''
@@ -204,8 +204,8 @@ class HexKeyBoard(VirtualKeyBoard):
 	def __init__(self, session, title="", **kwargs):
 		VirtualKeyBoard.__init__(self, session, title, **kwargs)
 		self.skinName = "VirtualKeyBoard"
-		self.keys_list = [[[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-					[u"OK", u"A", u"B", u"C", u"D", u"E", u"F", u"OK", u"LEFT", u"RIGHT", u"ALL", u"CLEAR"]]]
+		self.keys_list = [[["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"],
+					["OK", "A", "B", "C", "D", "E", "F", "OK", "LEFT", "RIGHT", "ALL", "CLEAR"]]]
 		self.locales = {"hex": [_("HEX"), _("HEX"), self.keys_list]}
 		self.lang = "hex"
 		try:
@@ -216,8 +216,8 @@ class HexKeyBoard(VirtualKeyBoard):
 		self.buildVirtualKeyBoard()
 
 	def setLang(self):
-                self.keys_list = [[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-					[u"OK", u"A", u"B", u"C", u"D", u"E", u"F", u"OK", u"LEFT", u"RIGHT", u"ALL", u"CLEAR"]]
+                self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"],
+					["OK", "A", "B", "C", "D", "E", "F", "OK", "LEFT", "RIGHT", "ALL", "CLEAR"]]
 
 
 table = array('L')
@@ -236,7 +236,7 @@ def crc32(string):
       if PY3:
                 value = 0x2600 ^ 0xffffffff
       else:
-                value = 0x2600 ^ 0xffffffffL
+                value = 0x2600 ^ 0xffffffff
       for ch in string:
                 if PY3:
                 	value = table[(ch ^ value) & 0xff] ^ (value >> 8)
@@ -245,14 +245,14 @@ def crc32(string):
       if PY3:
                 return value ^ 0xffffffff
       else:
-                return value ^ 0xffffffffL
+                return value ^ 0xffffffff
 
 
 def crc323(string):
       if PY3:
                 value = 0xe00 ^ 0xffffffff
       else:
-                value = 0xe00 ^ 0xffffffffL
+                value = 0xe00 ^ 0xffffffff
       for ch in string:
                 if PY3:
                 	value = table[(ch ^ value) & 0xff] ^ (value >> 8)
@@ -261,7 +261,7 @@ def crc323(string):
       if PY3:
                 return value ^ 0xffffffff
       else:
-                return value ^ 0xffffffffL
+                return value ^ 0xffffffff
 
 
 def hasCAID(session):
