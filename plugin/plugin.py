@@ -40,64 +40,64 @@ def debug(label, data):
 
 
 def getnewcaid(SoftCamKey):
-   ##T 0001
-   import os
-   caidnumbers = []
-   newkey = 1
-   if os_path.exists(SoftCamKey):
-      try:
-          lines = open(SoftCamKey).readlines()
-          for line in lines:
-              line = line.strip()
-              if line.startswith('T'):
-                caidnumber = line[2:6]
-                try:
+    ##T 0001
+    import os
+    caidnumbers = []
+    newkey = 1
+    if os_path.exists(SoftCamKey):
+        try:
+            lines = open(SoftCamKey).readlines()
+            for line in lines:
+                line = line.strip()
+                if line.startswith('T'):
+                    caidnumber = line[2:6]
+                    try:
                         caidnumbers.append(int(caidnumber))
-                except:
+                    except:
                         continue
-      except:
-          caidnumbers = []
-      try:
-              newcaid = max(caidnumbers) + 1
-      except:
-              newcaid = 1
-      formatter = "{:04}"
-      newcaid = formatter.format(newcaid)
-      saved_caid = int(config.plugins.KeyAdder.lastcaid.value) + 1
-      if saved_caid > newcaid:
-          newcaid = saved_caid
-      elif newcaid > saved_caid:
-         config.plugins.KeyAdder.lastcaid.value = newcaid
-         config.plugins.KeyAdder.lastcaid.save()
-      elif newcaid == 9999:
-          config.plugins.KeyAdder.lastcaid.value = "1111"
-          config.plugins.KeyAdder.lastcaid.save()
-          newcaid == "1111"
-      return newcaid
+        except:
+            caidnumbers = []
+        try:
+            newcaid = max(caidnumbers) + 1
+        except:
+            newcaid = 1
+        formatter = "{:04}"
+        newcaid = formatter.format(newcaid)
+        saved_caid = int(config.plugins.KeyAdder.lastcaid.value) + 1
+        if saved_caid > newcaid:
+            newcaid = saved_caid
+        elif newcaid > saved_caid:
+            config.plugins.KeyAdder.lastcaid.value = newcaid
+            config.plugins.KeyAdder.lastcaid.save()
+        elif newcaid == 9999:
+            config.plugins.KeyAdder.lastcaid.value = "1111"
+            config.plugins.KeyAdder.lastcaid.save()
+            newcaid == "1111"
+        return newcaid
 
 
 def findSoftCamKey():
-	paths = ["/etc/tuxbox/config/oscam-emu", "/etc/tuxbox/config/oscam-trunk", "/etc/tuxbox/config/oscam", "/etc/tuxbox/config/ncam", "/etc/tuxbox/config", "/etc", "/var/keys", "/usr/keys"]
-	if os_path.exists("/tmp/.oscam/oscam.version"):
-		data = open("/tmp/.oscam/oscam.version", "r").readlines()
-	if os_path.exists("/tmp/.ncam/ncam.version"):
-		data = open("/tmp/.ncam/ncam.version", "r").readlines()
-	for path in paths:
-		softcamkey = os_path.join(path, "SoftCam.Key")
-		print("[key] the %s exists %d" % (softcamkey, os_path.exists(softcamkey)))
-		if os_path.exists(softcamkey):
-			return softcamkey
-	return "/usr/keys/SoftCam.Key"
+    paths = ["/etc/tuxbox/config/oscam-emu", "/etc/tuxbox/config/oscam-trunk", "/etc/tuxbox/config/oscam", "/etc/tuxbox/config/ncam", "/etc/tuxbox/config", "/etc", "/var/keys", "/usr/keys"]
+    if os_path.exists("/tmp/.oscam/oscam.version"):
+        data = open("/tmp/.oscam/oscam.version", "r").readlines()
+    if os_path.exists("/tmp/.ncam/ncam.version"):
+        data = open("/tmp/.ncam/ncam.version", "r").readlines()
+    for path in paths:
+        softcamkey = os_path.join(path, "SoftCam.Key")
+        print("[key] the %s exists %d" % (softcamkey, os_path.exists(softcamkey)))
+        if os_path.exists(softcamkey):
+            return softcamkey
+    return "/usr/keys/SoftCam.Key"
 
 
 class AddKeyUpdate(Screen):
     if reswidth == 1920:
-           skin = '''
+        skin = '''
                 <screen name="AddKeyUpdate" position="center,center" size="650,300" backgroundColor="#16000000" transparent="0" title="KeyAdder" >
                        <widget name="menu" position="30,30" size="650,300" backgroundColor="#16000000" transparent = "0" />
                 </screen>'''
     else:
-           skin = '''
+        skin = '''
                 <screen name="AddKeyUpdate" position="center,center" size="450,180" backgroundColor="#16000000" transparent="0" title="KeyAdder" >
                        <widget name="menu" position="20,20" size="450,180" backgroundColor="#16000000" transparent = "0" />
                 </screen>'''
@@ -122,9 +122,9 @@ class AddKeyUpdate(Screen):
     def select(self):
         index = self['menu'].getSelectionIndex()
         if index == 0:
-                keymenu(self.session)
+            keymenu(self.session)
         elif index == 1:
-                self.siteselect()
+            self.siteselect()
         else:
             self.close()
 
@@ -184,9 +184,9 @@ class AddKeyUpdate(Screen):
         for i in range(0, len(datalist)):
             txt = datalist[i][1]
             if reswidth == 1280:
-                  png = os_path.join(resolveFilename(SCOPE_PLUGINS, 'Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/%s.png' % datalist[i][2]))
+                png = os_path.join(resolveFilename(SCOPE_PLUGINS, 'Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/%s.png' % datalist[i][2]))
             else:
-                  png = os_path.join(resolveFilename(SCOPE_PLUGINS, 'Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsFHD/%s.png' % datalist[i][2]))
+                png = os_path.join(resolveFilename(SCOPE_PLUGINS, 'Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsFHD/%s.png' % datalist[i][2]))
             res.append(MultiContentEntryText(pos=(0, 1), size=(0, 0), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text='', color=scolor, color_sel=cccolor, border_width=3, border_color=806544))
             if reswidth == 1280:
                 res.append(MultiContentEntryText(pos=(60, 1), size=(723, 50), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text=str(txt), color=16777215, color_sel=16777215))
@@ -201,280 +201,280 @@ class AddKeyUpdate(Screen):
 
 
 class HexKeyBoard(VirtualKeyBoard):
-	def __init__(self, session, title="", **kwargs):
-		VirtualKeyBoard.__init__(self, session, title, **kwargs)
-		self.skinName = "VirtualKeyBoard"
-		self.keys_list = [[[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-					[u"OK", u"A", u"B", u"C", u"D", u"E", u"F", u"OK", u"LEFT", u"RIGHT", u"ALL", u"CLEAR"]]]
-		self.locales = {"hex": [_("HEX"), _("HEX"), self.keys_list]}
-		self.lang = "hex"
-		try:
-		     self.setLocale()
-		except:
-                     self.max_key = all
-		     self.setLang()
-		self.buildVirtualKeyBoard()
+    def __init__(self, session, title="", **kwargs):
+        VirtualKeyBoard.__init__(self, session, title, **kwargs)
+        self.skinName = "VirtualKeyBoard"
+        self.keys_list = [[[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
+                                [u"OK", u"A", u"B", u"C", u"D", u"E", u"F", u"OK", u"LEFT", u"RIGHT", u"ALL", u"CLEAR"]]]
+        self.locales = {"hex": [_("HEX"), _("HEX"), self.keys_list]}
+        self.lang = "hex"
+        try:
+            self.setLocale()
+        except:
+            self.max_key = all
+            self.setLang()
+        self.buildVirtualKeyBoard()
 
-	def setLang(self):
-                self.keys_list = [[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-					[u"OK", u"A", u"B", u"C", u"D", u"E", u"F", u"OK", u"LEFT", u"RIGHT", u"ALL", u"CLEAR"]]
+    def setLang(self):
+        self.keys_list = [[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
+                                [u"OK", u"A", u"B", u"C", u"D", u"E", u"F", u"OK", u"LEFT", u"RIGHT", u"ALL", u"CLEAR"]]
 
 
 table = array('L')
 for byte in range(256):
-	crc = 0
-	for bit in range(8):
-		if (byte ^ crc) & 1:
-			crc = (crc >> 1) ^ 0xEDB88320
-		else:
-			crc >>= 1
-		byte >>= 1
-	table.append(crc)
+    crc = 0
+    for bit in range(8):
+        if (byte ^ crc) & 1:
+            crc = (crc >> 1) ^ 0xEDB88320
+        else:
+            crc >>= 1
+        byte >>= 1
+    table.append(crc)
 
 
 def crc32(string):
-      if PY3:
-                value = 0x2600 ^ 0xffffffff
-      else:
-                value = 0x2600 ^ 0xffffffffL
-      for ch in string:
-                if PY3:
-                	value = table[(ch ^ value) & 0xff] ^ (value >> 8)
-                else:
-                	value = table[(ord(ch) ^ value) & 0xff] ^ (value >> 8)
-      if PY3:
-                return value ^ 0xffffffff
-      else:
-                return value ^ 0xffffffffL
+    if PY3:
+        value = 0x2600 ^ 0xffffffff
+    else:
+        value = 0x2600 ^ 0xffffffffL
+    for ch in string:
+        if PY3:
+            value = table[(ch ^ value) & 0xff] ^ (value >> 8)
+        else:
+            value = table[(ord(ch) ^ value) & 0xff] ^ (value >> 8)
+    if PY3:
+        return value ^ 0xffffffff
+    else:
+        return value ^ 0xffffffffL
 
 
 def crc323(string):
-      if PY3:
-                value = 0xe00 ^ 0xffffffff
-      else:
-                value = 0xe00 ^ 0xffffffffL
-      for ch in string:
-                if PY3:
-                	value = table[(ch ^ value) & 0xff] ^ (value >> 8)
-                else:
-                	value = table[(ord(ch) ^ value) & 0xff] ^ (value >> 8)
-      if PY3:
-                return value ^ 0xffffffff
-      else:
-                return value ^ 0xffffffffL
+    if PY3:
+        value = 0xe00 ^ 0xffffffff
+    else:
+        value = 0xe00 ^ 0xffffffffL
+    for ch in string:
+        if PY3:
+            value = table[(ch ^ value) & 0xff] ^ (value >> 8)
+        else:
+            value = table[(ord(ch) ^ value) & 0xff] ^ (value >> 8)
+    if PY3:
+        return value ^ 0xffffffff
+    else:
+        return value ^ 0xffffffffL
 
 
 def hasCAID(session):
-	service = session.nav.getCurrentService()
-	info = service and service.info()
-	caids = info and info.getInfoObject(iServiceInformation.sCAIDs)
-	if caids and 0xe00 in caids:
-	    return True
-	if caids and 0x2600 in caids:
-	    return True
-	if caids and 0x604 in caids:
-	    return True
-	if caids and 0x1010 in caids:
-	    return True
-	try:
-		return eDVBDB.getInstance().hasCAID(ref, 0xe00)	# PowerVU
-	except:
-		pass
-	try:
-		return eDVBDB.getInstance().hasCAID(ref, 0x2600) # BISS
-	except:
-		pass
-	try:
-		return eDVBDB.getInstance().hasCAID(ref, 0x604) # IRDETO
-	except:
-		pass
-	try:
-		return eDVBDB.getInstance().hasCAID(ref, 0x1010) # Tandberg
-	except:
-		pass
-	return False
+    service = session.nav.getCurrentService()
+    info = service and service.info()
+    caids = info and info.getInfoObject(iServiceInformation.sCAIDs)
+    if caids and 0xe00 in caids:
+        return True
+    if caids and 0x2600 in caids:
+        return True
+    if caids and 0x604 in caids:
+        return True
+    if caids and 0x1010 in caids:
+        return True
+    try:
+        return eDVBDB.getInstance().hasCAID(ref, 0xe00)	# PowerVU
+    except:
+        pass
+    try:
+        return eDVBDB.getInstance().hasCAID(ref, 0x2600) # BISS
+    except:
+        pass
+    try:
+        return eDVBDB.getInstance().hasCAID(ref, 0x604) # IRDETO
+    except:
+        pass
+    try:
+        return eDVBDB.getInstance().hasCAID(ref, 0x1010) # Tandberg
+    except:
+        pass
+    return False
 
 
 def getCAIDS(session):
-	service = session.nav.getCurrentService()
-	info = service and service.info()
-	caids = info and info.getInfoObject(iServiceInformation.sCAIDs)
-	caidstr = "None"
-	if caids:
-	    caidstr = " ".join(["%04X (%d)" % (x, x) for x in sorted(caids)])
-	return caidstr
+    service = session.nav.getCurrentService()
+    info = service and service.info()
+    caids = info and info.getInfoObject(iServiceInformation.sCAIDs)
+    caidstr = "None"
+    if caids:
+        caidstr = " ".join(["%04X (%d)" % (x, x) for x in sorted(caids)])
+    return caidstr
 
 
 def keymenu(session, service=None):
-	service = session.nav.getCurrentService()
-	info = service and service.info()
-	caids = info and info.getInfoObject(iServiceInformation.sCAIDs)
-	SoftCamKey = findSoftCamKey()
-	ref = session.nav.getCurrentlyPlayingServiceReference()
-	if not os_path.exists(SoftCamKey):
-		session.open(MessageBox, _("Emu misses SoftCam.Key (%s)" % SoftCamKey), MessageBox.TYPE_ERROR)
-	elif not hasCAID(session):
-		session.open(MessageBox, _("CAID is missing for service (%s) CAIDS: %s" % (ref.toString(), getCAIDS(session))), MessageBox.TYPE_ERROR)
-	else:
-	     if caids and 0xe00 in caids:
-		   session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
-			title=_("Please enter new key:"), text=findKeyPowerVU(session, SoftCamKey))
-	     elif caids and 0x2600 in caids:
-		   session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
-			title=_("Please enter new key:"), text=findKeyBISS(session, SoftCamKey))
-	     elif caids and 0x604 in caids:
-		   session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
-			title=_("Please enter new key:"), text=findKeyIRDETO(session, SoftCamKey))
-	     elif caids and 0x1010 in caids:
-                   newcaid = getnewcaid(SoftCamKey)
-		   session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
-			title=_("Please enter new key for caid:" + newcaid), text=findKeyTandberg(session, SoftCamKey))
+    service = session.nav.getCurrentService()
+    info = service and service.info()
+    caids = info and info.getInfoObject(iServiceInformation.sCAIDs)
+    SoftCamKey = findSoftCamKey()
+    ref = session.nav.getCurrentlyPlayingServiceReference()
+    if not os_path.exists(SoftCamKey):
+        session.open(MessageBox, _("Emu misses SoftCam.Key (%s)" % SoftCamKey), MessageBox.TYPE_ERROR)
+    elif not hasCAID(session):
+        session.open(MessageBox, _("CAID is missing for service (%s) CAIDS: %s" % (ref.toString(), getCAIDS(session))), MessageBox.TYPE_ERROR)
+    else:
+        if caids and 0xe00 in caids:
+            session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
+                 title=_("Please enter new key:"), text=findKeyPowerVU(session, SoftCamKey))
+        elif caids and 0x2600 in caids:
+            session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
+                 title=_("Please enter new key:"), text=findKeyBISS(session, SoftCamKey))
+        elif caids and 0x604 in caids:
+            session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
+                 title=_("Please enter new key:"), text=findKeyIRDETO(session, SoftCamKey))
+        elif caids and 0x1010 in caids:
+            newcaid = getnewcaid(SoftCamKey)
+            session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
+                 title=_("Please enter new key for caid:" + newcaid), text=findKeyTandberg(session, SoftCamKey))
 
 
 def setKeyCallback(session, SoftCamKey, key):
-        global newcaid
-	service = session.nav.getCurrentService()
-	info = service and service.info()
-	caids = info and info.getInfoObject(iServiceInformation.sCAIDs)
-	SoftCamKey = findSoftCamKey()
-	ref = session.nav.getCurrentlyPlayingServiceReference()
-	if key:
-	    key = "".join(c for c in key if c in hexdigits).upper()
-	if key and len(key) == 14:
-		if key != findKeyPowerVU(session, SoftCamKey, ""): # no change was made ## PowerVU
-			keystr = "P %s 00 %s" % (getonidsid(session), key)
-			name = ServiceReference(session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
-			datastr = "\n%s ; Added on %s for %s at %s\n" % (keystr, datetime.now(), name, getOrb(session))
-			restartmess = "\n*** Need to Restart emu TO Active new key ***\n"
-			open(SoftCamKey, "a").write(datastr)
-			eConsoleAppContainer().execute("/etc/init.d/softcam restart")
-			session.open(MessageBox, _("PowerVU key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
-	elif key and len(key) == 16:
-             if 0x2600 in caids:
-		if key != findKeyBISS(session, SoftCamKey, ""): # no change was made ## BISS
-			keystr = "F %08X 00 %s" % (getHash(session), key)
-			name = ServiceReference(session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
-			datastr = "\n%s ; Added on %s for %s at %s\n" % (keystr, datetime.now(), name, getOrb(session))
-			restartmess = "\n*** Need to Restart emu TO Active new key ***\n"
-			open(SoftCamKey, "a").write(datastr)
-			eConsoleAppContainer().execute("/etc/init.d/softcam restart")
-			session.open(MessageBox, _("BISS key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
-             else:
-		if key != findKeyTandberg(session, SoftCamKey, ""): # no change was made ## Tandberg
-                        newcaid = getnewcaid(SoftCamKey)
-                        keystr = "T %s 01 %s" % (newcaid, key)
-			name = ServiceReference(session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
-			datastr = "\n%s ; Added on %s for %s at %s\n" % (keystr, datetime.now(), name, getOrb(session))
-			restartmess = "\n*** Need to Restart emu TO Active new key ***\n"
-			open(SoftCamKey, "a").write(datastr)
-			eConsoleAppContainer().execute("/etc/init.d/softcam restart")
-			session.open(MessageBox, _("Tandberg key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
-	elif key and len(key) == 32:
-		if key != findKeyIRDETO(session, SoftCamKey, ""): # no change was made ## IRDETO
-			keystr = "I 0604 M1 %s" % key
-			name = ServiceReference(session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
-			datastr = "\n%s ; Added on %s for %s at %s\n" % (keystr, datetime.now(), name, getOrb(session))
-			restartmess = "\n*** Need to Restart emu TO Active new key ***\n"
-			open(SoftCamKey, "a").write(datastr)
-			eConsoleAppContainer().execute("/etc/init.d/softcam restart")
-			session.open(MessageBox, _("Irdeto key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
-	elif key:
-		   session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
-			title=_("Invalid key, length is %d" % len(key)), text=key.ljust(16, '*'))
-			#title=_("Invalid key, length is %d expecting 16." % len(key)), text=key.ljust(16,'*'))
+    global newcaid
+    service = session.nav.getCurrentService()
+    info = service and service.info()
+    caids = info and info.getInfoObject(iServiceInformation.sCAIDs)
+    SoftCamKey = findSoftCamKey()
+    ref = session.nav.getCurrentlyPlayingServiceReference()
+    if key:
+        key = "".join(c for c in key if c in hexdigits).upper()
+    if key and len(key) == 14:
+        if key != findKeyPowerVU(session, SoftCamKey, ""): # no change was made ## PowerVU
+            keystr = "P %s 00 %s" % (getonidsid(session), key)
+            name = ServiceReference(session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
+            datastr = "\n%s ; Added on %s for %s at %s\n" % (keystr, datetime.now(), name, getOrb(session))
+            restartmess = "\n*** Need to Restart emu TO Active new key ***\n"
+            open(SoftCamKey, "a").write(datastr)
+            eConsoleAppContainer().execute("/etc/init.d/softcam restart")
+            session.open(MessageBox, _("PowerVU key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
+    elif key and len(key) == 16:
+        if 0x2600 in caids:
+            if key != findKeyBISS(session, SoftCamKey, ""): # no change was made ## BISS
+                keystr = "F %08X 00 %s" % (getHash(session), key)
+                name = ServiceReference(session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
+                datastr = "\n%s ; Added on %s for %s at %s\n" % (keystr, datetime.now(), name, getOrb(session))
+                restartmess = "\n*** Need to Restart emu TO Active new key ***\n"
+                open(SoftCamKey, "a").write(datastr)
+                eConsoleAppContainer().execute("/etc/init.d/softcam restart")
+                session.open(MessageBox, _("BISS key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
+        else:
+            if key != findKeyTandberg(session, SoftCamKey, ""): # no change was made ## Tandberg
+                newcaid = getnewcaid(SoftCamKey)
+                keystr = "T %s 01 %s" % (newcaid, key)
+                name = ServiceReference(session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
+                datastr = "\n%s ; Added on %s for %s at %s\n" % (keystr, datetime.now(), name, getOrb(session))
+                restartmess = "\n*** Need to Restart emu TO Active new key ***\n"
+                open(SoftCamKey, "a").write(datastr)
+                eConsoleAppContainer().execute("/etc/init.d/softcam restart")
+                session.open(MessageBox, _("Tandberg key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
+    elif key and len(key) == 32:
+        if key != findKeyIRDETO(session, SoftCamKey, ""): # no change was made ## IRDETO
+            keystr = "I 0604 M1 %s" % key
+            name = ServiceReference(session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
+            datastr = "\n%s ; Added on %s for %s at %s\n" % (keystr, datetime.now(), name, getOrb(session))
+            restartmess = "\n*** Need to Restart emu TO Active new key ***\n"
+            open(SoftCamKey, "a").write(datastr)
+            eConsoleAppContainer().execute("/etc/init.d/softcam restart")
+            session.open(MessageBox, _("Irdeto key saved sucessfuly!%s %s" % (datastr, restartmess)), MessageBox.TYPE_INFO, timeout=10)
+    elif key:
+        session.openWithCallback(boundFunction(setKeyCallback, session, SoftCamKey), HexKeyBoard,
+             title=_("Invalid key, length is %d" % len(key)), text=key.ljust(16, '*'))
+            #title=_("Invalid key, length is %d expecting 16." % len(key)), text=key.ljust(16,'*'))
 
 
 def getHash(session):
-	ref = session.nav.getCurrentlyPlayingServiceReference()
-	sid = ref.getUnsignedData(1)
-	tsid = ref.getUnsignedData(2)
-	onid = ref.getUnsignedData(3)
-	namespace = ref.getUnsignedData(4) | 0xA0000000
+    ref = session.nav.getCurrentlyPlayingServiceReference()
+    sid = ref.getUnsignedData(1)
+    tsid = ref.getUnsignedData(2)
+    onid = ref.getUnsignedData(3)
+    namespace = ref.getUnsignedData(4) | 0xA0000000
 
-	# check if we have stripped or full namespace
-	if namespace & 0xFFFF == 0:
-		# Namespace without frequency - Calculate hash with srvid, tsid, onid and namespace
-		data = "%04X%04X%04X%08X" % (sid, tsid, onid, namespace)
-	else:
-		# Full namespace - Calculate hash with srvid and namespace only
-		data = "%04X%08X" % (sid, namespace)
-	return crc32(binascii.unhexlify(data))
+    # check if we have stripped or full namespace
+    if namespace & 0xFFFF == 0:
+        # Namespace without frequency - Calculate hash with srvid, tsid, onid and namespace
+        data = "%04X%04X%04X%08X" % (sid, tsid, onid, namespace)
+    else:
+        # Full namespace - Calculate hash with srvid and namespace only
+        data = "%04X%08X" % (sid, namespace)
+    return crc32(binascii.unhexlify(data))
 
 
 def getonidsid(session):
-	ref = session.nav.getCurrentlyPlayingServiceReference()
-	sid = ref.getUnsignedData(1)
-	onid = ref.getUnsignedData(3)
-	return "%04X%04X" % (onid, sid)
+    ref = session.nav.getCurrentlyPlayingServiceReference()
+    sid = ref.getUnsignedData(1)
+    onid = ref.getUnsignedData(3)
+    return "%04X%04X" % (onid, sid)
 
 
 def getOrb(session):
-	ref = session.nav.getCurrentlyPlayingServiceReference()
-	orbpos = ref.getUnsignedData(4) >> 16
-	if orbpos == 0xFFFF:
-		desc = "C"
-	elif orbpos == 0xEEEE:
-		desc = "T"
-	else:
-		if orbpos > 1800: # west
-			orbpos = 3600 - orbpos
-			h = "W"
-		else:
-			h = "E"
-		desc = ("%d.%d%s") % (orbpos / 10, orbpos % 10, h)
-	return desc
+    ref = session.nav.getCurrentlyPlayingServiceReference()
+    orbpos = ref.getUnsignedData(4) >> 16
+    if orbpos == 0xFFFF:
+        desc = "C"
+    elif orbpos == 0xEEEE:
+        desc = "T"
+    else:
+        if orbpos > 1800: # west
+            orbpos = 3600 - orbpos
+            h = "W"
+        else:
+            h = "E"
+        desc = ("%d.%d%s") % (orbpos / 10, orbpos % 10, h)
+    return desc
 
 
 def findKeyPowerVU(session, SoftCamKey, key="00000000000000"):
-	keystart = "P %s" % getonidsid(session)
-	keyline = ""
-	with open(SoftCamKey, 'rU') as f:
-		for line in f:
-			if line.startswith(keystart):
-				keyline = line
-	if keyline:
-		return keyline.split()[3]
-	else:
-		return key
+    keystart = "P %s" % getonidsid(session)
+    keyline = ""
+    with open(SoftCamKey, 'rU') as f:
+        for line in f:
+            if line.startswith(keystart):
+                keyline = line
+    if keyline:
+        return keyline.split()[3]
+    else:
+        return key
 
 
 def findKeyBISS(session, SoftCamKey, key="0000000000000000"):
-	keystart = "F %08X" % getHash(session)
-	keyline = ""
-	with open(SoftCamKey, 'rU') as f:
-		for line in f:
-			if line.startswith(keystart):
-				keyline = line
-	if keyline:
-		return keyline.split()[3]
-	else:
-		return key
+    keystart = "F %08X" % getHash(session)
+    keyline = ""
+    with open(SoftCamKey, 'rU') as f:
+        for line in f:
+            if line.startswith(keystart):
+                keyline = line
+    if keyline:
+        return keyline.split()[3]
+    else:
+        return key
 
 
 def findKeyTandberg(session, SoftCamKey, key="0000000000000000"):
-	keystart = "T 0001"
-	keyline = ""
-	with open(SoftCamKey, 'rU') as f:
-		for line in f:
-			if line.startswith(keystart):
-				keyline = line
-	if keyline:
-		return keyline.split()[3]
-	else:
-		return key
+    keystart = "T 0001"
+    keyline = ""
+    with open(SoftCamKey, 'rU') as f:
+        for line in f:
+            if line.startswith(keystart):
+                keyline = line
+    if keyline:
+        return keyline.split()[3]
+    else:
+        return key
 
 
 def findKeyIRDETO(session, SoftCamKey, key="00000000000000000000000000000000"):
-	keystart = "I 0604"
-	keyline = ""
-	with open(SoftCamKey, 'rU') as f:
-		for line in f:
-			if line.startswith(keystart):
-				keyline = line
-	if keyline:
-		return keyline.split()[3]
-	else:
-		return key
+    keystart = "I 0604"
+    keyline = ""
+    with open(SoftCamKey, 'rU') as f:
+        for line in f:
+            if line.startswith(keystart):
+                keyline = line
+    if keyline:
+        return keyline.split()[3]
+    else:
+        return key
 
 
 def main(session, **kwargs):
@@ -482,6 +482,6 @@ def main(session, **kwargs):
 
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name="Key Adder", description="Add BISS, PowerVU, Irdeto and Tandberg keys to current service", icon="plugin.png",
-		where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU],
-		fnc=main, needsRestart=False)]
+    return [PluginDescriptor(name="Key Adder", description="Add BISS, PowerVU, Irdeto and Tandberg keys to current service", icon="plugin.png",
+            where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU],
+            fnc=main, needsRestart=False)]
