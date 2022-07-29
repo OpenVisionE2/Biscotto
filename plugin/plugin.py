@@ -24,8 +24,7 @@ from .VirtualKeyBoard import VirtualKeyBoard
 
 # python3
 from os import path as os_path
-from sys import version_info
-PY3 = version_info[0] == 3
+from six import PY3
 
 Ver = "2.5"
 reswidth = getDesktop(0).size().width()

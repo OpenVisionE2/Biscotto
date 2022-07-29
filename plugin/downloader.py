@@ -95,21 +95,22 @@ class imagedownloadScreen(Screen):
 
     def downloadfile(self, url, target):
         import ssl
-        import urllib2
+        from six.moves.urllib.request import urlopen, Request
+        from six.moves.urllib.error import URLError
         list1 = []
         try:
-            req = urllib2.Request(url)
+            req = Request(url)
             try:
-                response = urllib2.urlopen(req, context=ssl._create_unverified_context())
+                response = urlopen(req, context=ssl._create_unverified_context())
             except:
-                response = urllib2.urlopen(req)
+                response = urlopen(req)
             data = response.read()
             response.close()
             with open(ofile, 'wb') as f:
                 f.write(r.content)
             f.close()
             self['status'].setText('softcam downloaded successfully')
-        except urllib2.URLError as e:
+        except URLError as e:
             trace_error()
             if hasattr(e, 'code'):
                 print('We failed with error code - %s.' % e.code)
