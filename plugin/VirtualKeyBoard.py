@@ -1,6 +1,4 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
 import copy
 import skin
 from enigma import eListboxPythonMultiContent, gFont, getPrevAsciiCode, RT_HALIGN_CENTER, RT_VALIGN_CENTER, getDesktop

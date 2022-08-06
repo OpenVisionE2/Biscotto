@@ -1,6 +1,4 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
 # Code by mfaraj57 and RAED (c) 2018
 
 from Components.ActionMap import ActionMap
