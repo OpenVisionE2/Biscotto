@@ -16,8 +16,15 @@ from Components.Pixmap import Pixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Components.config import config
+from six import PY2
 from skin import loadSkin
+
 loadSkin(resolveFilename(SCOPE_PLUGINS, 'Extensions/KeyAdder/VirtualKeyBoard_Icons/vkskin.xml'))
+
+if PY2:
+	pyunichar = unichr
+else:
+	pyunichar = chr
 
 
 class VirtualKeyBoardList(MenuList):
@@ -2257,7 +2264,7 @@ class VirtualKeyBoard(Screen):
 
     def keyGotAscii_old(self):
         self.smsChar = None
-        if self.selectAsciiKey_old(str(unichr(getPrevAsciiCode()).encode('utf-8'))):
+        if self.selectAsciiKey_old(str(pyunichar(getPrevAsciiCode()).encode('utf-8'))):
             self.okClicked()
 
     def selectAsciiKey_old(self, char):
@@ -4865,7 +4872,11 @@ class VirtualKeyBoard(Screen):
 
     def localeMenu(self):
         languages = []
-        for locale, data in self.locales.iteritems():
+        if PY2:
+        	localesitems = self.locales.iteritems()
+        else:
+        	localesitems = self.locales.items()
+        for locale, data in localesitems:
             languages.append((data[0] + '  -  ' + data[1] + '  (' + locale + ')', locale))
 
         languages = sorted(languages)
@@ -4948,7 +4959,7 @@ class VirtualKeyBoard(Screen):
 
     def keyGotAscii(self):
         self.smsChar = None
-        if self.selectAsciiKey(str(unichr(getPrevAsciiCode()).encode('utf-8'))):
+        if self.selectAsciiKey(str(pyunichar(getPrevAsciiCode()).encode('utf-8'))):
             self.okClicked()
 
     def selectAsciiKey(self, char):
