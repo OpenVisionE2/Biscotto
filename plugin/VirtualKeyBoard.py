@@ -16,15 +16,13 @@ from Components.Pixmap import Pixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Components.config import config
-from six import PY2
 from skin import loadSkin
 
 loadSkin(resolveFilename(SCOPE_PLUGINS, 'Extensions/KeyAdder/VirtualKeyBoard_Icons/vkskin.xml'))
 
-if PY2:
-	pyunichar = unichr
-else:
-	pyunichar = chr
+import six
+pyunichar = six.unichr
+# In my tests on Ubuntu the "u" works for both python versions but according to six.pdf we can use "six.u" instead of "u"
 
 
 class VirtualKeyBoardList(MenuList):
@@ -4872,10 +4870,8 @@ class VirtualKeyBoard(Screen):
 
     def localeMenu(self):
         languages = []
-        if PY2:
-        	localesitems = self.locales.iteritems()
-        else:
-        	localesitems = self.locales.items()
+        from six import iteritems
+        localesitems = self.locales.iteritems()
         for locale, data in localesitems:
             languages.append((data[0] + '  -  ' + data[1] + '  (' + locale + ')', locale))
 
