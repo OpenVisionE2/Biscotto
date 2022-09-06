@@ -19,15 +19,15 @@ if sz_w == 1280:
     SKIN_imagedownloadScreen = """
 <screen name="imagedownloadScreen" position="center,center" size="560,155" title="Downloading image...">
 <widget name="activityslider" position="20,50" size="510,20" borderWidth="1" transparent="1" />
-<widget name="package" position="20,5" size="510,45" font="Regular;18" halign="center" valign="center" transparent="1" />
-<widget name="status" position="20,80" size="510,45" font="Regular;16" halign="center" valign="center" transparent="1" />
+<widget name="package" position="20,5" size="510,45" font="Regular;18" horizontalAlignment="center" verticalAlignment="center" transparent="1" />
+<widget name="status" position="20,80" size="510,45" font="Regular;16" horizontalAlignment="center" verticalAlignment="center" transparent="1" />
 </screen>"""
 else:
     SKIN_imagedownloadScreen = """
 <screen name="imagedownloadScreen" position="center,center" size="805,232" title="Downloading image...">
 <widget name="activityslider" position="30,75" size="755,30" borderWidth="1" transparent="1" />
-<widget name="package" position="30,7" size="755,60" font="Regular;27" halign="center" valign="center" transparent="1" />
-<widget name="status" position="30,120" size="755,60" font="Regular;24" halign="center" valign="center" transparent="1" />
+<widget name="package" position="30,7" size="755,60" font="Regular;27" horizontalAlignment="center" verticalAlignment="center" transparent="1" />
+<widget name="status" position="30,120" size="755,60" font="Regular;24" horizontalAlignment="center" verticalAlignment="center" transparent="1" />
 </screen>"""
 
 #### progress screen
