@@ -4,43 +4,43 @@
 <widget source="global.CurrentTime" render="Label" position="740,30" size="140,60" font="Regular;45" backgroundColor="#21000000" transparent="1">
   <convert type="ClockToText">Default</convert>
 </widget>
-<widget source="global.CurrentTime" render="Label" position="575,30" size="161,27" font="Regular;15" halign="right" backgroundColor="#21000000" transparent="1" foregroundColor="#00ffffff">
+<widget source="global.CurrentTime" render="Label" position="575,30" size="161,27" font="Regular;15" horizontalAlignment="right" backgroundColor="#21000000" transparent="1" foregroundColor="#00ffffff">
   <convert type="ClockToText">Format: %A</convert>
 </widget>
-<widget source="global.CurrentTime" render="Label" position="575,58" size="161,29" font="Regular;16" halign="right" backgroundColor="#21000000" foregroundColor="#00ffffff" transparent="1">
+<widget source="global.CurrentTime" render="Label" position="575,58" size="161,29" font="Regular;16" horizontalAlignment="right" backgroundColor="#21000000" foregroundColor="#00ffffff" transparent="1">
   <convert type="ClockToText">Format: %e. %B</convert>
 </widget>
 <eLabel text="Virtual KeyBoard" position="45,32" size="400,35" font="Regular;28" foregroundColor="#00ffffff" backgroundColor="#21000000" transparent="1"/>
 <eLabel position="43,98" size="500,45" zPosition="1" backgroundColor="#00ffffff"/>
 <eLabel position="45,101" size="496,40" zPosition="2" backgroundColor="#21000000" foregroundColor="#00000000"/>
-<widget source="country" render="Pixmap" position="557,99" size="57,42" alphatest="blend" borderWidth="2" borderColor="#ffbab329">
+<widget source="country" render="Pixmap" position="557,99" size="57,42" alphaTest="blend" borderWidth="2" borderColor="#ffbab329">
   <convert type="ValueToPixmap">LanguageCode</convert>
 </widget>
-<widget name="text" position="45,101" size="496,40" zPosition="3" font="Regular;33" foregroundColor="#21000000" backgroundColor="#21000000" halign="right"/>
+<widget name="text" position="45,101" size="496,40" zPosition="3" font="Regular;33" foregroundColor="#21000000" backgroundColor="#21000000" horizontalAlignment="right"/>
 <widget name="list" position="48,151" size="540,250" foregroundColor="#00ffffff" backgroundColor="#ff000000" transparent="1"/>
-<ePixmap position="612,151" size="256,256" zPosition="2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/keyb.png" transparent="1" alphatest="blend"/>
-<widget source="key_red" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="42,424" size="34,34" zPosition="1" alphatest="blend">
+<ePixmap position="612,151" size="256,256" zPosition="2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/keyb.png" transparent="1" alphaTest="blend"/>
+<widget source="key_red" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="42,424" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="42,424" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="42,424" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_red" position="79,427" size="160,28" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;24"/>
 <widget source="key_red" render="Label" position="79,427" size="160,28" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;24"/>
-<widget source="key_green" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="243,424" size="34,34" zPosition="1" alphatest="blend">
+<widget source="key_green" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="243,424" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="243,424" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="243,424" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_green" position="280,427" size="170,28" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;24"/>
 <widget source="key_green" render="Label" position="280,427" size="170,28" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;24"/>
-<widget source="key_yellow" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="456,424" size="34,34" zPosition="1" alphatest="blend">
+<widget source="key_yellow" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="456,424" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="456,424" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="456,424" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_yellow" position="495,427" size="170,28" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;24"/>
 <widget source="key_yellow" render="Label" position="495,427" size="170,28" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;24"/>
-<widget source="key_blue" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="672,424" size="34,34" zPosition="1" alphatest="blend">
+<widget source="key_blue" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="672,424" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="672,424" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="672,424" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_blue" position="710,427" size="170,28" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;24"/>
 <widget source="key_blue" render="Label" position="710,427" size="170,28" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;24"/>
 </screen>
@@ -50,44 +50,44 @@
 <widget source="global.CurrentTime" render="Label" position="1103,28" size="140,60" font="Regular;50" backgroundColor="#21000000" transparent="1">
   <convert type="ClockToText">Default</convert>
 </widget>
-<widget source="global.CurrentTime" render="Label" position="931,37" size="161,27" font="Regular;15" halign="right" backgroundColor="#21000000" transparent="1" foregroundColor="#00ffffff">
+<widget source="global.CurrentTime" render="Label" position="931,37" size="161,27" font="Regular;15" horizontalAlignment="right" backgroundColor="#21000000" transparent="1" foregroundColor="#00ffffff">
   <convert type="ClockToText">Format: %A</convert>
 </widget>
-<widget source="global.CurrentTime" render="Label" position="931,64" size="161,29" font="Regular;16" halign="right" backgroundColor="#21000000" foregroundColor="#00ffffff" transparent="1">
+<widget source="global.CurrentTime" render="Label" position="931,64" size="161,29" font="Regular;16" horizontalAlignment="right" backgroundColor="#21000000" foregroundColor="#00ffffff" transparent="1">
   <convert type="ClockToText">Format: %e. %B</convert>
 </widget>
 <eLabel text="Virtual KeyBoard" position="70,47" size="800,50" font="Regular;35" foregroundColor="#00ffffff" backgroundColor="#21000000" transparent="1"/>
-<widget name="header" position="70,130" size="700,40" font="Regular;28" foregroundColor="#00ffffff" backgroundColor="#21000000" halign="center" transparent="1"/>
+<widget name="header" position="70,130" size="700,40" font="Regular;28" foregroundColor="#00ffffff" backgroundColor="#21000000" horizontalAlignment="center" transparent="1"/>
 <eLabel position="70,210" size="800,60" zPosition="1" backgroundColor="#00ffffff"/>
 <eLabel position="72,212" size="796,56" zPosition="2" backgroundColor="#21000000"/>
-<widget source="country" render="Pixmap" position="790,219" size="57,42" alphatest="blend" borderWidth="2" borderColor="#ffbab329">
+<widget source="country" render="Pixmap" position="790,219" size="57,42" alphaTest="blend" borderWidth="2" borderColor="#ffbab329">
   <convert type="ValueToPixmap">LanguageCode</convert>
 </widget>
-<widget name="text" position="80,213" size="780,50" zPosition="3" font="Regular;40" foregroundColor="#21000000" backgroundColor="#21000000" halign="right"/>
+<widget name="text" position="80,213" size="780,50" zPosition="3" font="Regular;40" foregroundColor="#21000000" backgroundColor="#21000000" horizontalAlignment="right"/>
 <widget name="list" position="72,330" size="820,600" foregroundColor="#00ffffff" backgroundColor="#ff000000" transparent="1"/>
-<ePixmap position="920,120" size="256,256" zPosition="2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/keyb.png" transparent="1" alphatest="blend"/>
-<widget source="key_red" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="45,640" size="34,34" zPosition="1" alphatest="blend">
+<ePixmap position="920,120" size="256,256" zPosition="2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/keyb.png" transparent="1" alphaTest="blend"/>
+<widget source="key_red" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="45,640" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="45,640" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="45,640" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_red" position="85,640" size="250,35" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;28"/>
 <widget source="key_red" render="Label" position="85,640" size="250,35" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;28"/>
-<widget source="key_green" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="346,640" size="34,34" zPosition="1" alphatest="blend">
+<widget source="key_green" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="346,640" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="346,640" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="346,640" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_green" position="386,640" size="250,35" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;28"/>
 <widget source="key_green" render="Label" position="386,640" size="250,35" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;28"/>
-<widget source="key_yellow" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="650,640" size="34,34" zPosition="1" alphatest="blend">
+<widget source="key_yellow" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="650,640" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="650,640" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="650,640" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_yellow" position="690,640" size="250,35" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;28"/>
 <widget source="key_yellow" render="Label" position="690,640" size="250,35" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;28"/>
-<widget source="key_blue" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="953,640" size="34,34" zPosition="1" alphatest="blend">
+<widget source="key_blue" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="953,640" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="953,640" size="34,34" zPosition="1" alphatest="blend" name=""/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="953,640" size="34,34" zPosition="1" alphaTest="blend" name=""/>
 <widget name="key_blue" position="993,640" size="250,35" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;28"/>
 <widget source="key_blue" render="Label" position="993,640" size="250,35" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;28" name=""/>
 </screen>
@@ -97,43 +97,43 @@
 <widget source="global.CurrentTime" render="Label" position="740,30" size="140,60" font="Regular;45" backgroundColor="#21000000" transparent="1">
   <convert type="ClockToText">Default</convert>
 </widget>
-<widget source="global.CurrentTime" render="Label" position="575,30" size="161,27" font="Regular;15" halign="right" backgroundColor="#21000000" transparent="1" foregroundColor="#00ffffff">
+<widget source="global.CurrentTime" render="Label" position="575,30" size="161,27" font="Regular;15" horizontalAlignment="right" backgroundColor="#21000000" transparent="1" foregroundColor="#00ffffff">
   <convert type="ClockToText">Format: %A</convert>
 </widget>
-<widget source="global.CurrentTime" render="Label" position="575,58" size="161,29" font="Regular;16" halign="right" backgroundColor="#21000000" foregroundColor="#00ffffff" transparent="1">
+<widget source="global.CurrentTime" render="Label" position="575,58" size="161,29" font="Regular;16" horizontalAlignment="right" backgroundColor="#21000000" foregroundColor="#00ffffff" transparent="1">
   <convert type="ClockToText">Format: %e. %B</convert>
 </widget>
 <eLabel text="Virtual KeyBoard" position="45,32" size="400,35" font="Regular;28" foregroundColor="#00ffffff" backgroundColor="#21000000" transparent="1"/>
 <eLabel position="43,98" size="500,45" zPosition="1" backgroundColor="#00ffffff"/>
 <eLabel position="45,101" size="496,40" zPosition="2" backgroundColor="#21000000" foregroundColor="#00000000"/>
-<widget source="country" render="Pixmap" position="557,99" size="57,42" alphatest="blend" borderWidth="2" borderColor="#ffbab329">
+<widget source="country" render="Pixmap" position="557,99" size="57,42" alphaTest="blend" borderWidth="2" borderColor="#ffbab329">
   <convert type="ValueToPixmap">LanguageCode</convert>
 </widget>
-<widget name="text" position="45,101" size="496,40" zPosition="3" font="Regular;33" foregroundColor="#21000000" backgroundColor="#21000000" halign="right"/>
+<widget name="text" position="45,101" size="496,40" zPosition="3" font="Regular;33" foregroundColor="#21000000" backgroundColor="#21000000" horizontalAlignment="right"/>
 <widget name="list" position="48,151" size="630,250" zPosition="2" foregroundColor="#00ffffff" backgroundColor="#ff000000" transparent="1"/>
-<ePixmap position="645,120" size="256,256" zPosition="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/keyb.png" transparent="1" alphatest="blend"/>
-<widget source="key_red" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="42,424" size="34,34" zPosition="1" alphatest="blend">
+<ePixmap position="645,120" size="256,256" zPosition="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/keyb.png" transparent="1" alphaTest="blend"/>
+<widget source="key_red" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="42,424" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="42,424" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="42,424" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_red" position="79,427" size="160,28" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;24"/>
 <widget source="key_red" render="Label" position="79,427" size="160,28" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;24"/>
-<widget source="key_green" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="243,424" size="34,34" zPosition="1" alphatest="blend">
+<widget source="key_green" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="243,424" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="243,424" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="243,424" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_green" position="280,427" size="170,28" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;24"/>
 <widget source="key_green" render="Label" position="280,427" size="170,28" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;24"/>
-<widget source="key_yellow" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="456,424" size="34,34" zPosition="1" alphatest="blend">
+<widget source="key_yellow" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="456,424" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="456,424" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="456,424" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_yellow" position="495,427" size="170,28" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;24"/>
 <widget source="key_yellow" render="Label" position="495,427" size="170,28" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;24"/>
-<widget source="key_blue" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="672,424" size="34,34" zPosition="1" alphatest="blend">
+<widget source="key_blue" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="672,424" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="672,424" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="672,424" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_blue" position="710,427" size="170,28" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;24"/>
 <widget source="key_blue" render="Label" position="710,427" size="170,28" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;24"/>
 </screen>
@@ -143,44 +143,44 @@
 <widget source="global.CurrentTime" render="Label" position="1103,28" size="140,60" font="Regular;50" backgroundColor="#21000000" transparent="1">
   <convert type="ClockToText">Default</convert>
 </widget>
-<widget source="global.CurrentTime" render="Label" position="931,37" size="161,27" font="Regular;15" halign="right" backgroundColor="#21000000" transparent="1" foregroundColor="#00ffffff">
+<widget source="global.CurrentTime" render="Label" position="931,37" size="161,27" font="Regular;15" horizontalAlignment="right" backgroundColor="#21000000" transparent="1" foregroundColor="#00ffffff">
   <convert type="ClockToText">Format: %A</convert>
 </widget>
-<widget source="global.CurrentTime" render="Label" position="931,64" size="161,29" font="Regular;16" halign="right" backgroundColor="#21000000" foregroundColor="#00ffffff" transparent="1">
+<widget source="global.CurrentTime" render="Label" position="931,64" size="161,29" font="Regular;16" horizontalAlignment="right" backgroundColor="#21000000" foregroundColor="#00ffffff" transparent="1">
   <convert type="ClockToText">Format: %e. %B</convert>
 </widget>
 <eLabel text="Virtual KeyBoard" position="70,47" size="800,50" font="Regular;35" foregroundColor="#00ffffff" backgroundColor="#21000000" transparent="1"/>
-<widget name="header" position="70,130" size="700,40" font="Regular;28" foregroundColor="#00ffffff" backgroundColor="#21000000" halign="center" transparent="1"/>
+<widget name="header" position="70,130" size="700,40" font="Regular;28" foregroundColor="#00ffffff" backgroundColor="#21000000" horizontalAlignment="center" transparent="1"/>
 <eLabel position="70,210" size="800,60" zPosition="1" backgroundColor="#00ffffff"/>
 <eLabel position="72,212" size="796,56" zPosition="2" backgroundColor="#21000000"/>
-<widget source="country" render="Pixmap" position="790,219" size="57,42" alphatest="blend" borderWidth="2" borderColor="#ffbab329">
+<widget source="country" render="Pixmap" position="790,219" size="57,42" alphaTest="blend" borderWidth="2" borderColor="#ffbab329">
   <convert type="ValueToPixmap">LanguageCode</convert>
 </widget>
-<widget name="text" position="80,213" size="780,50" zPosition="3" font="Regular;40" foregroundColor="#21000000" backgroundColor="#21000000" halign="right"/>
+<widget name="text" position="80,213" size="780,50" zPosition="3" font="Regular;40" foregroundColor="#21000000" backgroundColor="#21000000" horizontalAlignment="right"/>
 <widget name="list" position="72,330" size="950,600" foregroundColor="#00ffffff" backgroundColor="#ff000000" transparent="1"/>
-<ePixmap position="920,120" size="256,256" zPosition="2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/keyb.png" transparent="1" alphatest="blend"/>
-<widget source="key_red" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="45,640" size="34,34" zPosition="1" alphatest="blend">
+<ePixmap position="920,120" size="256,256" zPosition="2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/keyb.png" transparent="1" alphaTest="blend"/>
+<widget source="key_red" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="45,640" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="45,640" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/red35x35.png" position="45,640" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_red" position="85,640" size="250,35" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;28"/>
 <widget source="key_red" render="Label" position="85,640" size="250,35" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;28"/>
-<widget source="key_green" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="346,640" size="34,34" zPosition="1" alphatest="blend">
+<widget source="key_green" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="346,640" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="346,640" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/green35x35.png" position="346,640" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_green" position="386,640" size="250,35" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;28"/>
 <widget source="key_green" render="Label" position="386,640" size="250,35" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;28"/>
-<widget source="key_yellow" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="650,640" size="34,34" zPosition="1" alphatest="blend">
+<widget source="key_yellow" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="650,640" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="650,640" size="34,34" zPosition="1" alphatest="blend"/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/yellow35x35.png" position="650,640" size="34,34" zPosition="1" alphaTest="blend"/>
 <widget name="key_yellow" position="690,640" size="250,35" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;28"/>
 <widget source="key_yellow" render="Label" position="690,640" size="250,35" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;28"/>
-<widget source="key_blue" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="953,640" size="34,34" zPosition="1" alphatest="blend">
+<widget source="key_blue" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="953,640" size="34,34" zPosition="1" alphaTest="blend">
   <convert type="ConditionalShowHide"></convert>
 </widget>
-<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="953,640" size="34,34" zPosition="1" alphatest="blend" name=""/>
+<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/KeyAdder/VirtualKeyBoard_Icons/buttonsHD/blue35x35.png" position="953,640" size="34,34" zPosition="1" alphaTest="blend" name=""/>
 <widget name="key_blue" position="993,640" size="250,35" backgroundColor="#ff000000" zPosition="1" transparent="1" font="Regular;28"/>
 <widget source="key_blue" render="Label" position="993,640" size="250,35" backgroundColor="#ff4a4a4a" zPosition="2" transparent="1" foregroundColor="#00ffffff" font="Regular;28" name=""/>
 </screen>
