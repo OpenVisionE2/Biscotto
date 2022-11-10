@@ -9,7 +9,7 @@ from enigma import eTimer, eConsoleAppContainer, getDesktop
 from os import path as os_path
 from Components.GUIComponent import *
 from Components.ProgressBar import ProgressBar
-from Tools.Downloader import downloadWithProgress
+from Tools.Downloader import DownloadWithProgress
 import os
 import time
 
@@ -135,7 +135,7 @@ class imagedownloadScreen(Screen):
             self.setTitle(_('Connecting') + '...')
             self['status'].setText(_('Connecting') + ' to server....')
             self.downloading = True
-            self.downloader = downloadWithProgress(self.url, self.target)
+            self.downloader = DownloadWithProgress(self.url, self.target)
             self.downloader.addProgress(self.progress)
             self.downloader.start().addCallback(self.responseCompleted).addErrback(self.responseFailed)
 
